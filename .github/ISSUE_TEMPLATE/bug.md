@@ -1,9 +1,9 @@
 ---
-name: 错误报告
+name: bug
 about: 创建一份报告来帮助我们改进
 title: "【Bug】"
-labels: ''
-assignees: ''
+labels: bug, 待查看
+assignees: jizilin6732
 
 ---
 
