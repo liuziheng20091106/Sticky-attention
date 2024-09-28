@@ -43,7 +43,7 @@ Sticky-attention 是一款适用于多媒体屏幕的作业显示工具，可以
 
 | 下载渠道/通道 | **🚀正式版** <br/>[![GitHub Release](https://img.shields.io/github/v/release/jizilin6732/Sticky-attention?style=flat-square&logo=GitHub&color=%233fb950)](https://github.com/jizilin6732/Sticky-attention/releases/latest)  | 🚧测试版<br/>[![GitHub Release](https://img.shields.io/github/v/release/jizilin6732/Sticky-attention?include_prereleases&style=flat-square&logo=GitHub&label=dev)](https://github.com/jizilin6732/Sticky-attention/releases/) |
 | -- | -- | -- |
-| GitHub | [**GitHub下载**](https://github.com/HelloWRC/StickyHomeworks/releases/latest) | [GitHub下载](https://github.com/HelloWRC/StickyHomeworks/releases) |
+| GitHub | [**GitHub下载**](https://github.com/jizilin6732/Sticky-attention/releases/latest) | [GitHub下载](https://github.com/jizilin6732/Sticky-attention/releases) |
 
 <!-- > GitHub Releases 还没有同步历史版本。要下载历史版本，请前往[AppCenter](https://install.appcenter.ms/users/hellowrc/apps/classisland/distribution_groups/public/releases/latest)。 -->
 
