@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElysiaFramework", "ElysiaFr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StickyHomeworks.Core", "StickyHomeworks.Core\StickyHomeworks.Core.csproj", "{7049A8AB-4754-4620-BE87-A087E627B46D}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Sticky-attention Setup", "Sticky-attention Setup、\Sticky-attention Setup、.vdproj", "{28493AE3-466E-4ABC-8573-94B1E5966952}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,8 @@ Global
 		{7049A8AB-4754-4620-BE87-A087E627B46D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7049A8AB-4754-4620-BE87-A087E627B46D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7049A8AB-4754-4620-BE87-A087E627B46D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28493AE3-466E-4ABC-8573-94B1E5966952}.Debug|Any CPU.ActiveCfg = Debug
+		{28493AE3-466E-4ABC-8573-94B1E5966952}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
