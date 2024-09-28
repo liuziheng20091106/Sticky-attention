@@ -38,14 +38,14 @@ Sticky-attention 是一款适用于Windows 系统教室一体机的作业显示�
 
 ## 开始使用
 
-###1. 检查设备需求
+### 1.检查设备需求
 
 **首先，请确保您的设备满足以下推荐需求：**
 > [!important]
 > - Windows 10 及以上版本的系统，x64架构
 > - 已安装[.NET 8.0桌面运行时](https://dotnet.microsoft.com/zh-cn/download/dotnet/thank-you/runtime-desktop-8.0.1-windows-x64-installer)
 
-###2. 下载软件压缩包
+### 2.下载软件压缩包
 
 对于普通用户，可以在以下渠道下载到本软件，请根据自身网络环境选择合适的渠道。
 
@@ -57,7 +57,7 @@ Sticky-attention 是一款适用于Windows 系统教室一体机的作业显示�
 
 <!-- > GitHub Releases 还没有同步历史版本。要下载历史版本，请前往[AppCenter](https://install.appcenter.ms/users/hellowrc/apps/classisland/distribution_groups/public/releases/latest)。 -->
 
-###3. 使用软件
+### 3.使用软件
 
 下载完成后，将软件压缩包解压，运行安装程序，安装后即可开始使用。
 
