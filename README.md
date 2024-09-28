@@ -1,3 +1,20 @@
+<div align="center">
+
+<image src="https://avatars.githubusercontent.com/u/183182916?s=48&v=4" height="64"/>
+
+# Sticky-attention
+
+forked from [HelloWRC/StickyHomeworks](https://github.com/HelloWRC/StickyHomeworks)
+
+![image](https://github.com/HelloWRC/StickyHomeworks/assets/55006226/d6dc1553-d3ff-4905-907c-aba79089fc9a)
+
+> 背景图片来自[Pixiv@辰暮sora](https://www.pixiv.net/artworks/110847880)
+
+[![stars](https://img.shields.io/github/stars/jizilin6732/Sticky-attention?label=Stars)](https://github.com/jizilin6732/Sticky-attention)
+[![forks](https://img.shields.io/github/forks/jizilin6732/Sticky-attention?label=Forks)](https://github.com/jizilin6732/Sticky-attention)
+[![Watchers](https://img.shields.io/github/watchers/jizilin6732/Sticky-attention?style=social)](https://github.com/jizilin6732/Sticky-attention/watchers)
+[![GitHub Issues](https://img.shields.io/github/issues-search/jizilin6732/Sticky-attention?query=is%3Aopen&style=flat&logo=github&label=Issues&color=%233fb950)](https://github.com/jizilin6732/Sticky-attention/issues)
+[![Github Last Commit](https://img.shields.io/github/last-commit/jizilin6732/Sticky-attention)](https://github.com/jizilin6732/Sticky-attention/commits/master)
 [![LICENSE](https://img.shields.io/badge/License-GPL--3.0-red.svg "LICENSE")](https://github.com/jizilin6732/Sticky-attention/blob/master/LICENSE.txt)
 [![QQ群](https://img.shields.io/badge/-QQ%E7%BE%A4%EF%BD%9C680019081-blue?style=flat&logo=TencentQQ)](https://qm.qq.com/q/neHPnfBSJq)
 
@@ -8,13 +25,13 @@ Sticky-attention 是一款适用于Windows 系统教室一体机的作业显示�
 
 ## 功能
 
-[ X ] 布置与修改作业
-[ X ] 富文本支持（字体及其大小、颜色等）
-[ X ] 按科目分类
-[ X ] 为作业添加标签
-[ X ] 主界面全局缩放
-[ X ] 自动清理过期作业
-[ X ] 导出作业面板截图
+[X] 布置与修改作业
+[X] 富文本支持（字体及其大小、颜色等）
+[X] 按科目分类
+[X] 为作业添加标签
+[X] 主界面全局缩放
+[X] 自动清理过期作业
+[X] 导出作业面板截图
 [] 支持软件自动更新
 [] 界面圆角
 
