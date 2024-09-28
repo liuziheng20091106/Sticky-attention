@@ -206,7 +206,8 @@
                                         </Grid>
                                         <Separator Margin="-12 4"/>
                                         <MenuItem Margin="-12 0" Icon="{materialDesign:PackIcon Refresh}" Header="恢复过期的作业" Click="MenuItemRecoverExpiredHomework_OnClick" IsEnabled="{Binding ViewModel.CanRecoverExpireHomework}"/>
-                                        <MenuItem Margin="-12 0" Icon="{materialDesign:PackIcon CogOutline}" Header="更多设置…" Click="ButtonSettings_OnClick"/>
+                                        <MenuItem Margin="-12 0" Icon="{materialDesign:PackIcon CogOutline}" Header="设置" Click="ButtonSettings_OnClick"/>
+                                        <MenuItem Margin="-12 0" Icon="{materialDesign:PackIcon cancel}" Header="关闭应用" Click="ButtonExit_OnClick"/>
                                     </StackPanel>
                                 </Grid>
                             </materialDesign:PopupEx>
@@ -224,9 +225,7 @@
                             <!--<Button Content="{materialDesign:PackIcon Add, Size=0}" ToolTip="布置作业"-->
                                     <!--Visibility="{Binding ViewModel.IsExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"-->
                                     <!--Click="ButtonCreateHomework_OnClick" />-->
-                            <Button Content="{materialDesign:PackIcon Settings, Size=18}" ToolTip="设置…"
-                                    Click="ButtonSettings_OnClick" />
-                            <Button Margin="4 0" Click="ButtonExpandingSwitcher_OnClick">
+                           <!---> <Button Margin="4 0" Click="ButtonExpandingSwitcher_OnClick">
                                 <Button.Style>
                                     <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignToolForegroundButton}">
                                         <Style.Triggers>
@@ -241,8 +240,8 @@
                                         </Style.Triggers>
                                     </Style>
                                 </Button.Style>
-                            </Button>
-                            <Button Content="{materialDesign:PackIcon Kind=Restart, Size=18}" ToolTip="退出" 
+                            </Button> -->
+                            <Button Content="{materialDesign:PackIcon Kind=Restart, Size=18}" ToolTip="重启" 
                                     Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
                                     CommandParameter="{StaticResource ExitConfirm}"/>
                         </StackPanel>
