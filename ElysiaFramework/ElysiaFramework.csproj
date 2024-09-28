@@ -7,10 +7,10 @@
 	<UseWindowsForms>true</UseWindowsForms>
 	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	<PackageId>dev.HelloWRC.$(AssemblyName)</PackageId>
-	<Authors>HelloWRC.Dev</Authors>
-	<AssemblyVersion>1.0.1</AssemblyVersion>
-	<FileVersion>1.0.1</FileVersion>
-	<Version>1.0.1</Version>
+	<Authors>JIzilin</Authors>
+	<AssemblyVersion>1.1.0</AssemblyVersion>
+	<FileVersion>1.1.0</FileVersion>
+	<Version>1.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>

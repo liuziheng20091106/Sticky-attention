@@ -104,6 +104,9 @@
                 <models:ContributionMember
                     AvatarImage="/Assets/Contributiors/HelloWRC@64w.jpg"
                     Name="HelloWRC" Description="软件作者，写代码巨水（划掉）" />
+                <models:ContributionMember
+                   AvatarImage="/Assets/Contributiors/11.jpg"
+                   Name="JIzilin" Description="这是个大史！" />
             </ListView>
         </Grid>
 
@@ -595,21 +598,18 @@
                                         <!-- about -->
                                         <StackPanel Grid.Column="1" Margin="10 0 0 0">
                                             <TextBlock>
-                                                    <Run Text="StickyHomework" FontSize="24" FontWeight="Bold" />
+                                                    <Run Text="Sticky-attention" FontSize="24" FontWeight="Bold" />
                                                     <LineBreak />
                                                     <Run Text="{x:Static ci:App.AppVersion}" />
                                                     <LineBreak />
-                                                    <Run Text="Copyright (c) 2023 HelloWRC" />
+                                                    <Run Text="Copyright (c) 2024 JIzilin" />
                                             </TextBlock>
                                             <WrapPanel>
                                                 <Button HorizontalAlignment="Left" Margin="6"
                                                             Style="{StaticResource MaterialDesignFlatButton}">
                                                     <ely:IconText Kind="MicrosoftGithub" Text="GitHub"/>
                                                 </Button>
-                                                <Button HorizontalAlignment="Left" Margin="6"
-                                                            Style="{StaticResource MaterialDesignFlatButton}">
-                                                    <ely:IconText Kind="BugOutline" Text="问题反馈"/>
-                                                </Button>
+
                                                 <Button HorizontalAlignment="Left" Margin="6"
                                                             Style="{StaticResource MaterialDesignFlatButton}"
                                                             Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
@@ -634,11 +634,9 @@
                                             关于本应用
                                         </Paragraph>
                                         <Paragraph>
-                                            注意！本应用处于早期开发阶段！大部分功能尚不完善，或存在bug，可能会在后期的版本中完善或修复。饼要一个一个画，功能要一个一个实现（
+                                            注意！本应用处于早期开发阶段！大部分功能尚不完善，或存在bug，可能会在后期的版本中完善或修复本作品由【WRC】出品，由JIzilin进行二次创作！
                                         </Paragraph>
-                                        <Paragraph>
-                                            别看了，没做完。
-                                        </Paragraph>
+                                        
                                         <Paragraph Style="{StaticResource MarkdownHeadline2Style}"
                                                    LineHeight="2">
                                             鸣谢：
@@ -653,13 +651,11 @@
                                                     Style="{StaticResource MaterialDesignFlatButton}"
                                                     Click="ButtonThirdPartyLibs_OnClick">
                                                 <ely:IconText Kind="PackageVariant" Text="第三方库" />
-                                            </Button></Paragraph>
-                                        <Paragraph>
-                                            Work In Progress
+                                            </Button>
                                         </Paragraph>
 
-                                        <Paragraph Foreground="#fff7d1ec">
-                                            永远喜欢爱莉希雅
+                                        <Paragraph Foreground="red">
+                                            永远爱中国！
                                         </Paragraph>
 
                                     </FlowDocument>

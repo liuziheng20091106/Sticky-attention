@@ -70,16 +70,16 @@
             </CollectionViewSource.GroupDescriptions>
         </CollectionViewSource>
 
-        <StackPanel x:Key="ExitConfirm" VerticalAlignment="Stretch" Margin="16" MaxWidth="400">
-            <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}">
-                <Run Text="退出应用"/>
+        <StackPanel x:Key="ExitConfirm" VerticalAlignment="Stretch" Margin="40" MaxWidth="400">
+            <TextBlock Margin="20 0 0 5" Style="{StaticResource MaterialDesignHeadline6TextBlock}">
+                <Run Text="重启应用"/>
             </TextBlock>
-            <TextBlock Margin="0 6 0 0" TextWrapping="Wrap">
-                <Run Text="确定要退出应用吗？"/>
+            <TextBlock Margin="0 6 0 2" TextWrapping="Wrap">
+                <Run Text="确定要重启应用吗？"/>
             </TextBlock>
             <StackPanel Orientation="Horizontal" Margin="0 8 0 0" HorizontalAlignment="Right">
-                <Button Content="退出" HorizontalAlignment="Right" Style="{DynamicResource MaterialDesignFlatButton}" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" 
-                        Click="ButtonExit_OnClick">
+                <Button Content="重启" HorizontalAlignment="Right" Style="{DynamicResource MaterialDesignFlatButton}" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" 
+                      Click="ButtonRestart_OnClick">
                     <Button.CommandParameter>
                         <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
                             True
@@ -128,7 +128,7 @@
                 <!-- 标题栏 -->
                 <materialDesign:ColorZone Grid.Row="0"
                                           Mode="PrimaryMid"
-                                          Padding="6"
+                                          Padding="0"
                                           materialDesign:ElevationAssist.Elevation="Dp2"
                                           MouseDown="DragBorder_OnMouseDown">
                     <Grid>
@@ -221,9 +221,9 @@
                             <Button Content="{materialDesign:PackIcon FileExport, Size=18}" ToolTip="导出…" 
                                     Visibility="{Binding ViewModel.IsExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"
                                     Click="ButtonExport_OnClick"/>
-                            <Button Content="{materialDesign:PackIcon Add, Size=18}" ToolTip="布置作业"
-                                    Visibility="{Binding ViewModel.IsExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                    Click="ButtonCreateHomework_OnClick" />
+                            <!--<Button Content="{materialDesign:PackIcon Add, Size=0}" ToolTip="布置作业"-->
+                                    <!--Visibility="{Binding ViewModel.IsExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"-->
+                                    <!--Click="ButtonCreateHomework_OnClick" />-->
                             <Button Content="{materialDesign:PackIcon Settings, Size=18}" ToolTip="设置…"
                                     Click="ButtonSettings_OnClick" />
                             <Button Margin="4 0" Click="ButtonExpandingSwitcher_OnClick">
@@ -242,7 +242,7 @@
                                     </Style>
                                 </Button.Style>
                             </Button>
-                            <Button Content="{materialDesign:PackIcon Close, Size=18}" ToolTip="退出" 
+                            <Button Content="{materialDesign:PackIcon Kind=Restart, Size=18}" ToolTip="退出" 
                                     Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
                                     CommandParameter="{StaticResource ExitConfirm}"/>
                         </StackPanel>

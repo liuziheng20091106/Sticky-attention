@@ -17,7 +17,7 @@
                    mc:Ignorable="d"
                    Icon="/Assets/AppLogo.png"
                    Closing="CrashWindow_OnClosed"
-                   Title="崩溃啦！" Height="450" Width="800">
+                   Title="awa" Height="450" Width="800">
     <Grid Margin="12">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -26,8 +26,8 @@
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" TextWrapping="Wrap">
             <Run Text=":(" Foreground="{DynamicResource PrimaryHueMidBrush}" FontSize="32" FontWeight="Bold"/><LineBreak/>
-            <Run Text="出错了……" Foreground="{DynamicResource PrimaryHueMidBrush}" FontSize="20" FontWeight="Bold"/><LineBreak/><LineBreak/>
-            <Run Text="应用发生了无法解决的错误，需要退出。这可能是由一个bug引起的。若要将此错误反馈至开发人员，请保留此错误信息，并一并提交至开发者。"/>
+            <Run Text="应用死了……" Foreground="{DynamicResource PrimaryHueMidBrush}" FontSize="20" FontWeight="Bold"/><LineBreak/><LineBreak/>
+            <Run Text="应用发生了无法解决的错误，如要将此错误反馈至开发人员！"/>
         </TextBlock>
         <TextBox x:Name="TextBoxCrashInfo" Grid.Row="1" Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="0 6" AcceptsReturn="True"
                  VerticalContentAlignment="Top"
@@ -46,7 +46,7 @@
         </StackPanel>
         <StackPanel Grid.Row="2" HorizontalAlignment="Left" Orientation="Horizontal">
             <Button Style="{StaticResource MaterialDesignPaperButton}" Click="ButtonCopy_OnClick">
-                <ely:IconText Kind="ContentCopy" Text="复制" IconMargin="3 0 0 0"/>
+                <ely:IconText Kind="ContentCopy" Text="拷贝错误" IconMargin="3 0 0 0"/>
             </Button>
         </StackPanel>
     </Grid>

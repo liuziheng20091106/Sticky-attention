@@ -1,32 +1,22 @@
 ﻿using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using ElysiaFramework;
 using MaterialDesignThemes.Wpf;
-using Microsoft.Xaml.Behaviors;
-using StickyHomeworks.Behaviors;
 using StickyHomeworks.Models;
 using StickyHomeworks.Services;
 using StickyHomeworks.ViewModels;
 using StickyHomeworks.Views;
-using System.Windows.Automation;
 using System.Windows.Forms;
 using System.Windows.Threading;
-using Stfu.Linq;
 using DataFormats = System.Windows.DataFormats;
 using DragEventArgs = System.Windows.DragEventArgs;
-
 namespace StickyHomeworks;
 
 /// <summary>
@@ -140,7 +130,7 @@ public partial class MainWindow : Window
         {
             ViewModel.CanRecoverExpireHomework = true;
             ViewModel.SnackbarMessageQueue.Enqueue($"清除了{ViewModel.ExpiredHomeworks.Count}条过期的作业。",
-                "恢复", (o) => { RecoverExpiredHomework(); }, null, false, false, TimeSpan.FromSeconds(30));
+                "恢复", (o) => { RecoverExpiredHomework(); }, null, false, false, TimeSpan.FromSeconds(20));
         }
         base.OnInitialized(e);
     }
@@ -484,6 +474,13 @@ public partial class MainWindow : Window
     private void MenuItemRecoverExpiredHomework_OnClick(object sender, RoutedEventArgs e)
     {
         RecoverExpiredHomework();
+    }
+
+    private void ButtonRestart_OnClick(object sender, RoutedEventArgs e)
+    {
+        App.ReleaseLock();
+        System.Windows.Forms.Application.Restart();
+        System.Windows.Application.Current.Shutdown();
     }
 
     private void MainWindow_OnDragOver(object sender, DragEventArgs e)
