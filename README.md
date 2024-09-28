@@ -1,13 +1,13 @@
-# StickyHomeworks
-
-> [!warning]
-> 这个项目还在早期开发中
-
-StickyHomeworks 是一款支持富文本的桌面作业贴工具。
+<div align="center">
+  
+# Sticky-attention
+#### 一款支持富文本的桌面作业贴工具。
 
 ![image](https://github.com/HelloWRC/StickyHomeworks/assets/55006226/d6dc1553-d3ff-4905-907c-aba79089fc9a)
 
 > 背景图片来自[Pixiv@辰暮sora](https://www.pixiv.net/artworks/110847880)
+
+</div>
 
 ## 功能
 
