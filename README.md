@@ -18,6 +18,9 @@ forked from [HelloWRC/StickyHomeworks](https://github.com/HelloWRC/StickyHomewor
 [![Release](https://img.shields.io/github/v/release/jizilin6732/Sticky-attention?style=flat&color=%233fb950&label=正式版)](https://github.com/jizilin6732/Sticky-attention/releases/latest) 
 [![Beta](https://img.shields.io/github/v/release/jizilin6732/Sticky-attention?include_prereleases&style=flat&label=测试版)](https://github.com/jizilin6732/Sticky-attention/releases/)
 [![Github Last Commit](https://img.shields.io/github/last-commit/jizilin6732/Sticky-attention)](https://github.com/jizilin6732/Sticky-attention/commits/master)
+[![Created At](https://img.shields.io/github/created-at/jizilin6732/Sticky-attention)]()
+[![GitHub Language Count](https://img.shields.io/github/languages/count/jizilin6732/Sticky-attention)]()
+[![GitHub Top Language](https://img.shields.io/github/languages/top/jizilin6732/Sticky-attention)]()
 [![LICENSE](https://img.shields.io/badge/License-GPL--3.0-red.svg "LICENSE")](https://github.com/jizilin6732/Sticky-attention/blob/master/LICENSE.txt)
 [![QQ群](https://img.shields.io/badge/-QQ%E7%BE%A4%EF%BD%9C680019081-blue?style=flat&logo=TencentQQ)](https://qm.qq.com/q/neHPnfBSJq)
 
@@ -50,13 +53,13 @@ Sticky-attention 是一款适用于Windows 系统教室一体机的作业显示�
 
 ### 2.下载软件压缩包
 
-对于普通用户，可以在以下渠道下载到本软件，请根据自身网络环境选择合适的渠道。
+对于普通用户，您可以在以下通道下载本软件，请根据自身网络环境选择合适的渠道。
 
 > 测试版包含最新的功能，但也可能包含未完善和不稳定的功能，请谨慎使用。
 
-| 下载通道 | **🚀正式版** <br/>[![GitHub Release](https://img.shields.io/github/v/release/jizilin6732/Sticky-attention?style=flat-square&logo=GitHub&color=%233fb950)](https://github.com/jizilin6732/Sticky-attention/releases/latest)  | 🚧测试版<br/>[![GitHub Release](https://img.shields.io/github/v/release/jizilin6732/Sticky-attention?include_prereleases&style=flat-square&logo=GitHub&label=dev)](https://github.com/jizilin6732/Sticky-attention/releases/) |
+| **下载通道** | **🚀正式版** <br/>[![GitHub Release](https://img.shields.io/github/v/release/jizilin6732/Sticky-attention?style=flat&logo=GitHub&color=%233fb950)](https://github.com/jizilin6732/Sticky-attention/releases/latest)  | **🚧测试版** <br/>[![GitHub Release](https://img.shields.io/github/v/release/jizilin6732/Sticky-attention?include_prereleases&style=flat&logo=GitHub&label=dev)](https://github.com/jizilin6732/Sticky-attention/releases/) |
 | -- | -- | -- |
-| GitHub | [**GitHub下载**](https://github.com/jizilin6732/Sticky-attention/releases/latest) | [GitHub下载](https://github.com/jizilin6732/Sticky-attention/releases) |
+| **GitHub** | [**GitHub下载**](https://github.com/jizilin6732/Sticky-attention/releases/latest) | [**GitHub下载**](https://github.com/jizilin6732/Sticky-attention/releases) |
 
 <!-- > GitHub Releases 还没有同步历史版本。要下载历史版本，请前往[AppCenter](https://install.appcenter.ms/users/hellowrc/apps/classisland/distribution_groups/public/releases/latest)。 -->
 
