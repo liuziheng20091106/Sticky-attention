@@ -57,9 +57,9 @@ Sticky-attention 是一款适用于Windows 系统教室一体机的作业显示�
 
 > 测试版包含最新的功能，但也可能包含未完善和不稳定的功能，请谨慎使用。
 
-| 下载通道 | **🚀正式版** <br/>[![GitHub Release](https://img.shields.io/github/v/release/jizilin6732/Sticky-attention?style=flat&logo=GitHub&color=%233fb950)](https://github.com/jizilin6732/Sticky-attention/releases/latest)  | 🚧测试版<br/>[![GitHub Release](https://img.shields.io/github/v/release/jizilin6732/Sticky-attention?include_prereleases&style=flat&logo=GitHub&label=dev)](https://github.com/jizilin6732/Sticky-attention/releases/) |
+| **下载通道** | **🚀正式版** <br/>[![GitHub Release](https://img.shields.io/github/v/release/jizilin6732/Sticky-attention?style=flat&logo=GitHub&color=%233fb950)](https://github.com/jizilin6732/Sticky-attention/releases/latest)  | **🚧测试版** <br/>[![GitHub Release](https://img.shields.io/github/v/release/jizilin6732/Sticky-attention?include_prereleases&style=flat&logo=GitHub&label=dev)](https://github.com/jizilin6732/Sticky-attention/releases/) |
 | -- | -- | -- |
-| GitHub | [**GitHub下载**](https://github.com/jizilin6732/Sticky-attention/releases/latest) | [GitHub下载](https://github.com/jizilin6732/Sticky-attention/releases) |
+| **GitHub** | [**GitHub下载**](https://github.com/jizilin6732/Sticky-attention/releases/latest) | [**GitHub下载**](https://github.com/jizilin6732/Sticky-attention/releases) |
 
 <!-- > GitHub Releases 还没有同步历史版本。要下载历史版本，请前往[AppCenter](https://install.appcenter.ms/users/hellowrc/apps/classisland/distribution_groups/public/releases/latest)。 -->
 
