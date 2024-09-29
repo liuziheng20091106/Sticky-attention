@@ -9,8 +9,8 @@
 	<IncludePackageReferencesDuringMarkupCompilation>true</IncludePackageReferencesDuringMarkupCompilation>
 	<ApplicationIcon>Assets\AppLogo.ico</ApplicationIcon>
 	<UserSecretsId>0d8165ac-3a9f-437c-8b8e-839225e5a88b</UserSecretsId>
-	<AssemblyVersion></AssemblyVersion>
-	<FileVersion></FileVersion>
+	<AssemblyVersion>1.1.0</AssemblyVersion>
+	<FileVersion>1.1.0</FileVersion>
 	<IncludeSymbols>False</IncludeSymbols>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

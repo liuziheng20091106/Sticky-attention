@@ -488,6 +488,20 @@
                         </ScrollViewer>
                     </TabItem>
 
+                    <!-- 基本 -->
+                    <TabItem  Header="更新">
+                        <ScrollViewer >
+                            <TextBox FontSize="10"
+                                 Width=" 120"
+                                    Height=" 30"
+                                    HorizontalContentAlignment="Center"
+                                   VerticalContentAlignment="Center"
+                                   Text="text">
+                            </TextBox>
+                        </ScrollViewer>
+                    </TabItem>
+
+
                     <!-- 科目 -->
                     <TabItem Header="科目">
                         <Grid Margin="12" MaxWidth="750">

@@ -95,6 +95,31 @@
                 </Button>
             </StackPanel>
         </StackPanel>
+        <StackPanel x:Key="stopConfirm" VerticalAlignment="Stretch" Margin="40" MaxWidth="400">
+            <TextBlock Margin="20 0 0 5" Style="{StaticResource MaterialDesignHeadline6TextBlock}">
+         <Run Text="关闭应用"/>
+            </TextBlock>
+            <TextBlock Margin="0 6 0 2" TextWrapping="Wrap">
+         <Run Text="确定要关闭应用吗？"/>
+            </TextBlock>
+            <StackPanel Orientation="Horizontal" Margin="0 8 0 0" HorizontalAlignment="Right">
+                <Button Content="关闭" HorizontalAlignment="Right" Style="{DynamicResource MaterialDesignFlatButton}" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" 
+               Click="ButtonRestart_OnClick">
+                    <Button.CommandParameter>
+                        <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
+                            True
+                        </system:Boolean>
+                    </Button.CommandParameter>
+                </Button>
+                <Button Content="取消" HorizontalAlignment="Right" Style="{DynamicResource MaterialDesignFlatButton}" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Margin="6 0 0 0">
+                    <Button.CommandParameter>
+                        <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
+                            False
+                        </system:Boolean>
+                    </Button.CommandParameter>
+                </Button>
+            </StackPanel>
+        </StackPanel>
         <Storyboard x:Key="StoryBoardSaving">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="PackIconArrowFile" Storyboard.TargetProperty="(Canvas.Top)">
                 <EasingDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
@@ -207,7 +232,7 @@
                                         <Separator Margin="-12 4"/>
                                         <MenuItem Margin="-12 0" Icon="{materialDesign:PackIcon Refresh}" Header="恢复过期的作业" Click="MenuItemRecoverExpiredHomework_OnClick" IsEnabled="{Binding ViewModel.CanRecoverExpireHomework}"/>
                                         <MenuItem Margin="-12 0" Icon="{materialDesign:PackIcon CogOutline}" Header="设置" Click="ButtonSettings_OnClick"/>
-                                        <MenuItem Margin="-12 0" Icon="{materialDesign:PackIcon cancel}" Header="关闭应用" Click="ButtonExit_OnClick"/>
+                                        <MenuItem Margin="-12 0" Icon="{materialDesign:PackIcon cancel}" Header="关闭应用" Click="ButtonExit_OnClick"   />
                                     </StackPanel>
                                 </Grid>
                             </materialDesign:PopupEx>

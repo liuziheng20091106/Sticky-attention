@@ -346,8 +346,22 @@ public partial class MainWindow : Window
 
     private void ButtonExit_OnClick(object sender, RoutedEventArgs e)
     {
-        ViewModel.IsClosing = true;
-        Close();
+        // 显示一个消息框询问用户是否要重启应用程序
+        var result = System.Windows.MessageBox.Show("您确定要关闭程序吗？", "Sticky-attention", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+        if (result == MessageBoxResult.Yes)
+        {
+            // 用户点击了“是”，执行重启逻辑
+            // 通常来说，重启应用需要重新启动进程。
+            // 这里假设你有一个方法RestartApplication()来处理重启逻辑。
+            ViewModel.IsClosing = true;
+            Close();
+        }
+        else
+        {
+            // 用户点击了“否”或关闭了消息框，不做任何事情
+            return;
+        }
     }
 
     private void ButtonDateSetToday_OnClick(object sender, RoutedEventArgs e)
