@@ -78,6 +78,7 @@ Sticky-attention 是一款适用于Windows 系统教室一体机的作业显示�
 ## 遇到问题
 如果您确定您遇到的问题是 Bug，或者您要提出新的功能，您可以：
 - 在[`QQ群｜680019081`](https://qm.qq.com/q/neHPnfBSJq)中交流
+- 在[`Discusstion`](https://github.com/Sticky-attention/Sticky-attention/discussions)中讨论
 - 提交 [`Issue`](https://github.com/Sticky-attention/Sticky-attention/issues)
 
 ## 开发
