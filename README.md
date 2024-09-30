@@ -4,6 +4,8 @@
 
 # Sticky-attention
 
+<video src="https://www.bilibili.com/video/BV11exqeiEwf" controls></video>
+
 forked from [HelloWRC/StickyHomeworks](https://github.com/HelloWRC/StickyHomeworks)
 
 ![image](https://github.com/HelloWRC/StickyHomeworks/assets/55006226/d6dc1553-d3ff-4905-907c-aba79089fc9a)
@@ -15,6 +17,7 @@ forked from [HelloWRC/StickyHomeworks](https://github.com/HelloWRC/StickyHomewor
 [![Watchers](https://img.shields.io/github/watchers/Sticky-attention/Sticky-attention?style=social)](https://github.com/Sticky-attention/Sticky-attention/watchers)
 [![Downloads](https://img.shields.io/github/downloads/Sticky-attention/Sticky-attention/total?style=social&label=Downloads&logo=github)](https://github.com/Sticky-attention/Sticky-attention/releases/latest)
 [![GitHub Issues](https://img.shields.io/github/issues-search/Sticky-attention/Sticky-attention?query=is%3Aopen&style=flat&logo=github&label=Issues&color=%233fb950)](https://github.com/Sticky-attention/Sticky-attention/issues)
+[![GitHub Discussions](https://img.shields.io/github/discussions/Sticky-attention/Sticky-attention?style=flat&logo=Github&label=Discussions)](https://github.com/Sticky-attention/Sticky-attention/discussions)
 [![Release](https://img.shields.io/github/v/release/Sticky-attention/Sticky-attention?style=flat&color=%233fb950&label=正式版)](https://github.com/Sticky-attention/Sticky-attention/releases/latest) 
 [![Beta](https://img.shields.io/github/v/release/Sticky-attention/Sticky-attention?include_prereleases&style=flat&label=测试版)](https://github.com/Sticky-attention/Sticky-attention/releases/)
 [![Github Last Commit](https://img.shields.io/github/last-commit/Sticky-attention/Sticky-attention)](https://github.com/Sticky-attention/Sticky-attention/commits/master)
@@ -70,7 +73,7 @@ Sticky-attention 是一款适用于Windows 系统教室一体机的作业显示�
 下载完成后，将软件压缩包解压，运行安装程序，安装后即可开始使用。
 
 > [!warning]
-> 本软件不能直接安装在`Program Files`与`Program Files (x86)`文件夹下，否则启动软件必须`用管理员权限打开`，同时开机自启失效！（软件也会报错）
+> **本软件不能直接安装在Program Files与Program Files (x86)文件夹下，否则启动软件必须用管理员权限打开，同时开机自启失效！（软件也会报错）**
 
 ## 遇到问题
 如果您确定您遇到的问题是 Bug，或者您要提出新的功能，您可以：
@@ -85,12 +88,12 @@ Sticky-attention 是一款适用于Windows 系统教室一体机的作业显示�
 - 正在[`dev`](https://github.com/Sticky-attention/Sticky-attention/tree/dev)分支上开发本应用。
 
 
-**要在本地编译应用，您需要安装以下负载和工具：**
+要在本地编译应用，您需要安装以下负载和工具：
 - [.NET 8.0 SDK](https://dotnet.microsoft.com/zh-cn/download/dotnet/8.0)
 - [Visual Studio](https://visualstudio.microsoft.com/)
 
 对于Visual Studio，您需要在安装时勾选以下工作负载：
-**.NET 桌面开发**
+- **.NET 桌面开发**
 
 我们欢迎想要为本应用实现新功能或进行改进的同学提交 [Pull requests](https://github.com/Sticky-attention/Sticky-attention/pulls)。
 
@@ -98,12 +101,8 @@ Sticky-attention 是一款适用于Windows 系统教室一体机的作业显示�
 
 本项目基于 [General Public License v3](LICENSE.txt) 获得许可。
 
-<div align="center">
-
 ## Stars 历史
 
 [![Star 历史](https://starchart.cc/Sticky-attention/Sticky-attention.svg?variant=adaptive)](https://starchart.cc/Sticky-attention/Sticky-attention)
 
 如果这个项目对您有帮助，请点亮 Star ⭐
-
-</div>
