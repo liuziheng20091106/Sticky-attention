@@ -6,9 +6,11 @@
 
 forked from [HelloWRC/StickyHomeworks](https://github.com/HelloWRC/StickyHomeworks)
 
-![image](https://github.com/HelloWRC/StickyHomeworks/assets/55006226/d6dc1553-d3ff-4905-907c-aba79089fc9a)
+![banner](image/banner.jpg)
 
-> 背景图片来自[Pixiv@辰暮sora](https://www.pixiv.net/artworks/110847880)
+![主界面](image/%E4%B8%BB%E7%95%8C%E9%9D%A2.jpg)
+
+主界面
 
 [![stars](https://img.shields.io/github/stars/Sticky-attention/Sticky-attention?label=Stars)](https://github.com/Sticky-attention/Sticky-attention)
 [![forks](https://img.shields.io/github/forks/Sticky-attention/Sticky-attention?label=Forks)](https://github.com/Sticky-attention/Sticky-attention)
@@ -18,10 +20,10 @@ forked from [HelloWRC/StickyHomeworks](https://github.com/HelloWRC/StickyHomewor
 [![GitHub Discussions](https://img.shields.io/github/discussions/Sticky-attention/Sticky-attention?style=flat&logo=Github&label=Discussions)](https://github.com/Sticky-attention/Sticky-attention/discussions)
 [![Release](https://img.shields.io/github/v/release/Sticky-attention/Sticky-attention?style=flat&color=%233fb950&label=正式版)](https://github.com/Sticky-attention/Sticky-attention/releases/latest) 
 [![Beta](https://img.shields.io/github/v/release/Sticky-attention/Sticky-attention?include_prereleases&style=flat&label=测试版)](https://github.com/Sticky-attention/Sticky-attention/releases/)
+[![Created At](https://img.shields.io/github/created-at/Sticky-attention/Sticky-attention)](https://github.com/Sticky-attention/Sticky-attention)
 [![Github Last Commit](https://img.shields.io/github/last-commit/Sticky-attention/Sticky-attention)](https://github.com/Sticky-attention/Sticky-attention/commits/master)
-[![Created At](https://img.shields.io/github/created-at/Sticky-attention/Sticky-attention)]()
-[![GitHub Language Count](https://img.shields.io/github/languages/count/Sticky-attention/Sticky-attention)]()
-[![GitHub Top Language](https://img.shields.io/github/languages/top/Sticky-attention/Sticky-attention)]()
+[![GitHub Language Count](https://img.shields.io/github/languages/count/Sticky-attention/Sticky-attention)](https://github.com/Sticky-attention/Sticky-attention)
+[![GitHub Top Language](https://img.shields.io/github/languages/top/Sticky-attention/Sticky-attention)](https://github.com/Sticky-attention/Sticky-attention)
 [![LICENSE](https://img.shields.io/badge/License-GPL--3.0-red.svg "LICENSE")](https://github.com/Sticky-attention/Sticky-attention/blob/master/LICENSE.txt)
 [![QQ群](https://img.shields.io/badge/-QQ%E7%BE%A4%EF%BD%9C680019081-blue?style=flat&logo=TencentQQ)](https://qm.qq.com/q/neHPnfBSJq)
 [![bilibili](https://img.shields.io/badge/-UP%E4%B8%BB%EF%BD%9C%E7%BA%AA%E6%B7%8B2024-%23FB7299?style=flat&logo=bilibili)](https://space.bilibili.com/3546750482647776)
@@ -103,4 +105,8 @@ Sticky-attention 是一款适用于Windows 系统教室一体机的作业显示�
 
 [![Star 历史](https://starchart.cc/Sticky-attention/Sticky-attention.svg?variant=adaptive)](https://starchart.cc/Sticky-attention/Sticky-attention)
 
+<div align="center">
+
 如果这个项目对您有帮助，请点亮 Star ⭐
+
+</div>
