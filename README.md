@@ -4,8 +4,6 @@
 
 # Sticky-attention
 
-<video src="https://www.bilibili.com/video/BV11exqeiEwf" controls></video>
-
 forked from [HelloWRC/StickyHomeworks](https://github.com/HelloWRC/StickyHomeworks)
 
 ![image](https://github.com/HelloWRC/StickyHomeworks/assets/55006226/d6dc1553-d3ff-4905-907c-aba79089fc9a)
