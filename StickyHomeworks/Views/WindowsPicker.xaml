@@ -15,7 +15,7 @@
                    Background="{DynamicResource MaterialDesignPaper}"
                    TextElement.FontWeight="Regular"
                    TextElement.FontSize="14"
-                   FontFamily="{StaticResource HarmonyOsSans}"
+                   FontFamily="{StaticResource MiSans}"
                    Title="选择壁纸窗口">
     <Grid>
         <Grid.RowDefinitions>

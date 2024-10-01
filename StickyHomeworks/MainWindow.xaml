@@ -13,7 +13,7 @@
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="14"
-        FontFamily="{StaticResource HarmonyOsSans}"
+        FontFamily="{StaticResource MiSans}"
         Title="{Binding SettingsService.Settings.Title, Mode=OneWay}" 
         ShowInTaskbar="{Binding SettingsService.Settings.IsDebugShowInTaskBar}"
         d:DataContext="{d:DesignInstance local:MainWindow}"
@@ -164,7 +164,7 @@
                         <!-- 标题 -->
                         <TextBlock Grid.Column="0" Text="{Binding SettingsService.Settings.Title, Mode=OneWay}"
                                    VerticalAlignment="Center"
-                                   FontWeight="Medium"
+                                   FontWeight="Bold"
                                    TextTrimming="CharacterEllipsis"
                                    FontSize="22" Margin="6 2 2 2" />
                         <!-- 功能区 -->
@@ -333,7 +333,7 @@
                                         <Setter.Value>
                                             <ControlTemplate TargetType="{x:Type GroupItem}">
                                                 <StackPanel>
-                                                    <TextBlock Text="{Binding Name}" FontSize="22" FontWeight="Bold" />
+                                                    <TextBlock Text="{Binding Name}" FontSize="20" FontWeight="Bold" />
                                                     <ItemsPresenter />
                                                 </StackPanel>
                                             </ControlTemplate>
@@ -367,11 +367,11 @@
                 </ListView>
 
                 <!-- 布置作业 -->
-                <Button Grid.Row="2"
+                <Button Grid.Row="5"
                         Click="ButtonCreateHomework_OnClick"
                         Visibility="{Binding ViewModel.IsExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"
                         Style="{StaticResource MaterialDesignFlatButton}">
-                    <ely:IconText Kind="Add" Text="布置作业" />
+                    <ely:IconText Kind="Add" Text="添加" />
                 </Button>
 
                 <!-- 保存中 -->

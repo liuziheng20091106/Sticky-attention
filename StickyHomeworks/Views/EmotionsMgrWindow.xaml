@@ -16,7 +16,7 @@
         TextOptions.TextRenderingMode="Auto"        
         Icon="/Assets/AppLogo.png"
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{StaticResource HarmonyOsSans}">
+        FontFamily="{StaticResource MiSans}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

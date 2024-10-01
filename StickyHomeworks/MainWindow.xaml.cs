@@ -17,6 +17,7 @@ using System.Windows.Forms;
 using System.Windows.Threading;
 using DataFormats = System.Windows.DataFormats;
 using DragEventArgs = System.Windows.DragEventArgs;
+using System.Drawing;
 namespace StickyHomeworks;
 
 /// <summary>
@@ -24,6 +25,8 @@ namespace StickyHomeworks;
 /// </summary>
 public partial class MainWindow : Window
 {
+    private PropertyChangedEventHandler ViewModelOnPropertyChanged;
+
     public MainViewModel ViewModel { get; set; } = new MainViewModel();
 
     public ProfileService ProfileService { get; }
@@ -75,17 +78,17 @@ public partial class MainWindow : Window
         }
     }
 
-    private void ViewModelOnPropertyChanged(object? sender, PropertyChangedEventArgs e)
-    {
-        if (e.PropertyName == nameof(ViewModel.SelectedListBoxItem))
-        {
-            RepositionEditingWindow();
-        }
-        if (e.PropertyName == nameof(ViewModel.SelectedHomework))
-        {
-            ExitEditingMode(false);
-        }
-    }
+    //private void ViewModelOnPropertyChanged(object? sender, PropertyChangedEventArgs e)
+    //{
+    //    if (e.PropertyName == nameof(ViewModel.SelectedListBoxItem))
+    //    {
+    //        RepositionEditingWindow();
+    //    }
+    //    if (e.PropertyName == nameof(ViewModel.SelectedHomework))
+    //    {
+    //        ExitEditingMode(false);
+    //    }
+    //}
     
 
     private void ExitEditingMode(bool hard=true)
@@ -268,11 +271,11 @@ public partial class MainWindow : Window
         ViewModel.IsTagEditingPopupOpened = true;
     }
 
-    private void ButtonEditHomework_OnClick(object sender, RoutedEventArgs e)
+  private void ButtonEditHomework_OnClick(object sender, RoutedEventArgs e)
     {
         OnHomeworkEditorUpdated?.Invoke(this, EventArgs.Empty);
         ViewModel.IsCreatingMode = false;
-        if (ViewModel.SelectedHomework== null)
+        if (ViewModel.SelectedHomework == null)
             return;
         ViewModel.EditingHomework = ViewModel.SelectedHomework;
         ViewModel.IsDrawerOpened = true;
@@ -280,25 +283,7 @@ public partial class MainWindow : Window
         AppEx.GetService<HomeworkEditWindow>().TryOpen();
     }
 
-    private void RepositionEditingWindow()
-    {
-        if (ViewModel.SelectedListBoxItem == null) 
-            return;
-        Debug.WriteLine("selected changed");
-        try
-        {
-            GetCurrentDpi(out var dpiX, out var dpiY);
-            var p = ViewModel.SelectedListBoxItem.PointToScreen(new Point(ViewModel.SelectedListBoxItem.ActualWidth, 0));
-            var screen = Screen.PrimaryScreen!.WorkingArea;
-            var homeworkEditWindow = AppEx.GetService<HomeworkEditWindow>();
-            homeworkEditWindow.Left = p.X / dpiX;
-            homeworkEditWindow.Top = Math.Min(p.Y, screen.Bottom - homeworkEditWindow.ActualHeight * dpiY) / dpiY;
-        }
-        catch (Exception e)
-        {
-            // ignored
-        }
-    }
+
 
     private void ButtonRemoveHomework_OnClick(object sender, RoutedEventArgs e)
     {
@@ -422,7 +407,7 @@ public partial class MainWindow : Window
             {
                 Stretch = Stretch.None
             };
-            var bg = (Brush)FindResource("MaterialDesignPaper");
+            var bg = (System.Windows.Media.Brush)FindResource("MaterialDesignPaper");
             context.DrawRectangle(bg, null, new Rect(0, 0, MainListView.ActualWidth * s, MainListView.ActualHeight * s)); 
             context.DrawRectangle(brush, null, new Rect(0, 0, MainListView.ActualWidth * s, MainListView.ActualHeight * s));
             context.Close();
@@ -510,5 +495,68 @@ public partial class MainWindow : Window
         ViewModel.IsUnlocked = false;
         SizeToContent = SizeToContent.Height;
         Width = Math.Min(ActualWidth, 350);
+    }
+
+    private async void RepositionEditingWindow()
+    {
+        if (ViewModel.SelectedListBoxItem == null)
+        {
+            Debug.WriteLine("SelectedListBoxItem is null, cannot reposition the editing window.");
+            return;
+        }
+
+        try
+        {
+            // 获取当前屏幕的DPI
+            GetCurrentDpi(out var dpiX, out var dpiY);
+
+            // 将选定ListBoxItem的右上角坐标转换为屏幕坐标系下的点
+            var listBoxItemPoint = ViewModel.SelectedListBoxItem.PointToScreen(new System.Windows.Point(ViewModel.SelectedListBoxItem.ActualWidth, 0));
+
+            // 将WPF的Point转换为GDI+的Point
+            var gdiPoint = new System.Drawing.Point((int)listBoxItemPoint.X, (int)listBoxItemPoint.Y);
+
+            // 获取包含该点的屏幕
+            var screen = System.Windows.Forms.Screen.FromPoint(gdiPoint);
+            var workingArea = screen.WorkingArea;
+
+            // 通过服务提供者获取HomeworkEditWindow实例
+            var homeworkEditWindow = AppEx.GetService<HomeworkEditWindow>();
+
+            // 确保窗口已经初始化
+            if (homeworkEditWindow == null || !homeworkEditWindow.IsInitialized)
+            {
+                Debug.WriteLine("HomeworkEditWindow is not initialized, cannot reposition the editing window.");
+                return;
+            }
+
+            // 如果窗口尚未加载完成，等待其加载
+            if (!homeworkEditWindow.IsLoaded)
+            {
+                await Task.Run(() =>
+                {
+                    homeworkEditWindow.Dispatcher.InvokeAsync(() => { }, DispatcherPriority.ApplicationIdle).Wait();
+                });
+            }
+
+            // 计算窗口的位置
+            double left = listBoxItemPoint.X / dpiX;
+            double top = Math.Min(listBoxItemPoint.Y, workingArea.Bottom - homeworkEditWindow.ActualHeight * dpiY) / dpiY;
+
+            // 确保窗口完全在屏幕上
+            left = Math.Max(workingArea.Left, Math.Min(left, workingArea.Right - homeworkEditWindow.ActualWidth));
+            top = Math.Max(workingArea.Top, Math.Min(top, workingArea.Bottom - homeworkEditWindow.ActualHeight));
+
+            // 设置窗口的位置
+            homeworkEditWindow.Left = left;
+            homeworkEditWindow.Top = top;
+
+            Debug.WriteLine($"Repositioned HomeworkEditWindow to: Left={left}, Top={top}");
+        }
+        catch (Exception e)
+        {
+            // 处理可能发生的异常
+            Debug.WriteLine($"Error repositioning the editing window: {e.Message}");
+        }
     }
 }

@@ -11,7 +11,8 @@
         <materialDesign:PackIcon Kind="{Binding Kind, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:IconText}}}"
                                  VerticalAlignment="Center"/>
         <TextBlock Text="{Binding Text, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:IconText}}}"
-                   VerticalAlignment="Center"
-                   Margin="{Binding IconMargin, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:IconText}}}"/>
+           VerticalAlignment="Center"
+           Margin="{Binding IconMargin, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:IconText}}}"
+           FontWeight="Medium" />
     </StackPanel>
 </UserControl>

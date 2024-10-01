@@ -13,7 +13,7 @@
                    TextOptions.TextFormattingMode="Ideal" 
                    TextOptions.TextRenderingMode="Auto"        
                    Background="{DynamicResource MaterialDesignPaper}"
-                   FontFamily="{StaticResource HarmonyOsSans}"
+                   FontFamily="{StaticResource MiSans}"
                    mc:Ignorable="d"
                    Icon="/Assets/AppLogo.png"
                    Closing="CrashWindow_OnClosed"

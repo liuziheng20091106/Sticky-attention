@@ -16,7 +16,7 @@
         d:DataContext="{d:DesignInstance local:HomeworkEditWindow}"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{x:Null}"
-        FontFamily="{StaticResource HarmonyOsSans}"
+        FontFamily="{StaticResource MiSans}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="14"
         TextOptions.TextFormattingMode="Ideal" 
@@ -251,8 +251,8 @@
                                             <TextBlock.Style>
                                                 <Style TargetType="TextBlock">
                                                     <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding}" Value="{StaticResource HarmonyOsSans}">
-                                                            <Setter Property="Text" Value="HarmonyOs Sans SC (内置)"/>
+                                                        <DataTrigger Binding="{Binding}" Value="{StaticResource MiSans}">
+                                                            <Setter Property="Text" Value="MiSans(内置)"/>
                                                         </DataTrigger>
                                                     </Style.Triggers>
                                                     <Setter Property="Text" Value="{Binding}"/>

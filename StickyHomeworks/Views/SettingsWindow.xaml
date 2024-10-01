@@ -11,7 +11,7 @@
                    d:DataContext="{d:DesignInstance views:SettingsWindow}"
                    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
                    Background="{DynamicResource MaterialDesignPaper}"
-                   FontFamily="{StaticResource HarmonyOsSans}"
+                   FontFamily="{StaticResource MiSans}"
                    TextElement.FontWeight="Regular"
                    TextElement.FontSize="14"
                    TextOptions.TextFormattingMode="Ideal" 
@@ -58,7 +58,10 @@
             <TextBlock Grid.Row="0" Text="开放源代码许可" Style="{StaticResource MaterialDesignHeadline5TextBlock}"/>
             <TextBox Grid.Row="1" Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="0 12 0 0"
                      Padding="8" Text="{Binding ViewModel.License, Mode=OneWay}" IsReadOnly="True"
-                     VerticalScrollBarVisibility="Auto" FontFamily="Consolas"/>
+                     VerticalScrollBarVisibility="Auto" FontFamily="Consolas"
+                     />
+            <TextBox Grid.Row="1" Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="0 12 0 0"
+          Padding="8" Text="                                    GNU GENERAL PUBLIC LICENSE"/>
             <Button Grid.Row="2" Style="{StaticResource MaterialDesignFlatButton}" Content="确定" 
                     HorizontalAlignment="Right" Margin="0 8 0 0"
                     Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
@@ -488,18 +491,101 @@
                         </ScrollViewer>
                     </TabItem>
 
-                    <!-- 基本 -->
-                    <TabItem  Header="更新">
-                        <ScrollViewer >
-                            <TextBox FontSize="10"
-                                 Width=" 120"
-                                    Height=" 30"
-                                    HorizontalContentAlignment="Center"
-                                   VerticalContentAlignment="Center"
-                                   Text="text">
-                            </TextBox>
+                    <!-- 更新 -->
+                    <TabItem Header="更新">
+                        <ScrollViewer>
+                            <StackPanel Margin="6" MaxWidth="1000">
+                                <StackPanel>
+                                    <!-- banner -->
+                                    <!--<Grid Height="100">
+     <Image Source="/Assets/banner.png" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+ </Grid>-->
+                                    <Grid HorizontalAlignment="Stretch" Margin="12">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <!-- icon -->
+                                        <materialDesign:Ripple Grid.Column="0" VerticalAlignment="Top"
+                                            MouseDown="AppIcon_OnMouseDown">
+                                            <!-- TODO: 图标 -->
+                                            <Image Source="/Assets/icon/成功 (2).png" Width="60"
+                                Height="90" VerticalAlignment="Top" />
+                                        </materialDesign:Ripple>
+                                        <!-- about -->
+                                        <StackPanel Grid.Column="1" Margin="10 0 0 0">
+                                            <TextBlock>
+                                 <Run Text="您已是最新！" FontSize="40" FontWeight="Bold" />
+                                 <LineBreak />
+                                <TextBlock Margin="-1">
+                                      <Run Text="版本：" FontWeight="Bold" FontSize="18"/>
+                                      <Run Text="{x:Static ci:App.AppVersion}" FontSize="18" />
+                                 </TextBlock>
+                                 <LineBreak />
+                                            </TextBlock>
+                                            <WrapPanel>
+                                                <Button HorizontalAlignment="Left" Margin="8"
+                              Style="{StaticResource MaterialDesignFlatButton}"
+                              Click="OpenGitHub_Click" Background="#FFFFFCFC" BorderBrush="Transparent">
+                                                    <ely:IconText Kind="restart" Text="检查更新"/>
+                                                </Button>
+
+                                                <Button HorizontalAlignment="Left" Margin="6"
+                                         Style="{StaticResource MaterialDesignFlatButton}"
+                                         Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" Background="White">
+                                                    <ely:IconText Kind="No" Text="取消更新" Loaded="IconText_Loaded"/>
+                                                    <Button.CommandParameter>
+                                                        <StaticResource ResourceKey="OpenSourceLicense" />
+                                                    </Button.CommandParameter>
+                                                </Button>
+
+                                            </WrapPanel>
+                                        </StackPanel>
+                                    </Grid>
+                                </StackPanel>
+                                <FlowDocumentScrollViewer ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                       IsSelectionEnabled="False"
+                                       PreviewMouseWheel="UIElement_OnPreviewMouseWheel"
+                                       ContextMenu="{x:Null}">
+                                    <FlowDocument FontFamily="{StaticResource MiSans}">
+                                        <Paragraph Style="{StaticResource MarkdownHeadline1Style}">
+                                            更新日志
+                                        </Paragraph>
+                                        <Paragraph>
+                                            不到啊
+                                        </Paragraph>
+
+                                        <Paragraph Style="{StaticResource MarkdownHeadline2Style}"
+                                LineHeight="2">
+                                            贡献者
+                                        </Paragraph>
+                                        <Paragraph>
+                                            budaoai
+                                        </Paragraph>
+                                        <Paragraph>
+                                        <!--    <Button HorizontalAlignment="Left" Margin="6"
+                                 Style="{StaticResource MaterialDesignFlatButton}"
+                                 Click="ButtonContributors_OnClick">
+                                                <ely:IconText Kind="PeopleGroupOutline" Text="贡献人员" />
+                                            </Button>-->
+                                            <!--<Button HorizontalAlignment="Left" Margin="6"
+                                 Style="{StaticResource MaterialDesignFlatButton}"
+                                 Click="ButtonThirdPartyLibs_OnClick">
+                                                <ely:IconText Kind="PackageVariant" Text="第三方库" />
+                                            </Button>-->
+                                        </Paragraph>
+
+                                        <Paragraph Foreground="red">
+                                            永远爱中国！
+                                        </Paragraph>
+
+                                    </FlowDocument>
+                                </FlowDocumentScrollViewer>
+
+                            </StackPanel>
                         </ScrollViewer>
                     </TabItem>
+
 
 
                     <!-- 科目 -->
@@ -607,8 +693,8 @@
                                         <materialDesign:Ripple Grid.Column="0" VerticalAlignment="Top"
                                                                MouseDown="AppIcon_OnMouseDown">
                                             <!-- TODO: 应用图标 -->
-                                            <!--<Image Source="/Assets/AppLogo.ico" Width="40"
-                                                   Height="40" VerticalAlignment="Top" />-->
+                                            <Image Source="/Assets/AppLogo.ico" Width="40"
+                                                   Height="40" VerticalAlignment="Top" />
                                         </materialDesign:Ripple>
                                         <!-- about -->
                                         <StackPanel Grid.Column="1" Margin="10 0 0 0">
@@ -621,8 +707,9 @@
                                             </TextBlock>
                                             <WrapPanel>
                                                 <Button HorizontalAlignment="Left" Margin="6"
-                                                            Style="{StaticResource MaterialDesignFlatButton}">
-                                                    <ely:IconText Kind="MicrosoftGithub" Text="GitHub"/>
+                                                 Style="{StaticResource MaterialDesignFlatButton}"
+                                                 Click="OpenGitHub_Click">
+                                                  <ely:IconText Kind="MicrosoftGithub" Text="GitHub"/>
                                                 </Button>
 
                                                 <Button HorizontalAlignment="Left" Margin="6"
@@ -644,7 +731,7 @@
                                                           IsSelectionEnabled="False"
                                                           PreviewMouseWheel="UIElement_OnPreviewMouseWheel"
                                                           ContextMenu="{x:Null}">
-                                    <FlowDocument FontFamily="{StaticResource HarmonyOsSans}">
+                                    <FlowDocument FontFamily="{StaticResource MiSans}">
                                         <Paragraph Style="{StaticResource MarkdownHeadline1Style}">
                                             关于本应用
                                         </Paragraph>

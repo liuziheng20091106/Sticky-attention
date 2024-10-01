@@ -51,9 +51,9 @@
     </UserControl.Resources>
     <Grid DataContext="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=local:HomeworkControl}}">
         <DockPanel Margin="0 0">
-            <Ellipse Width="6" Height="6" Fill="{DynamicResource MaterialDesignBody}"
+            <Ellipse Width="5" Height="5" Fill="{DynamicResource MaterialDesignLightForeground}"
                      VerticalAlignment="Top"
-                     Margin="0 10 6 0"/>
+                     Margin="0 10 5 0"/>
             <WrapPanel>
                 <emoji:RichTextBox VerticalAlignment="Top"
                                    Padding="0"

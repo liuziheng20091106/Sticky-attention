@@ -287,4 +287,26 @@ public partial class SettingsWindow : MyWindow
     {
         AppEx.GetService<HomeworkEditWindow>().Show();
     }
+
+    private void OpenGitHub_Click(object sender, RoutedEventArgs e)
+    {
+        // 要打开的URL
+        string url = "https://github.com/Sticky-attention/Sticky-attention/";
+
+        // 使用默认浏览器打开URL
+        try
+        {
+            Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
+        }
+        catch (Exception ex)
+        {
+            // 处理异常，例如无法打开浏览器的情况
+            MessageBox.Show($"无法打开URL: {ex.Message}");
+        }
+    }
+
+    private void IconText_Loaded(object sender, RoutedEventArgs e)
+    {
+
+    }
 }

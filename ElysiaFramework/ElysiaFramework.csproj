@@ -8,18 +8,18 @@
 	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	<PackageId>dev.HelloWRC.$(AssemblyName)</PackageId>
 	<Authors>JIzilin</Authors>
-	<AssemblyVersion>1.1.0</AssemblyVersion>
-	<FileVersion>1.1.0</FileVersion>
-	<Version>1.1.0</Version>
+	<AssemblyVersion>1.1.3</AssemblyVersion>
+	<FileVersion>1.1.3</FileVersion>
+	<Version>1.1.3</Version>
   </PropertyGroup>
 
   <ItemGroup>
 	<None Remove="Assets\Fonts\HarmonyOS_Sans_SC_Black.ttf" />
-	<None Remove="Assets\Fonts\HarmonyOS_Sans_SC_Bold.ttf" />
-	<None Remove="Assets\Fonts\HarmonyOS_Sans_SC_Light.ttf" />
-	<None Remove="Assets\Fonts\HarmonyOS_Sans_SC_Medium.ttf" />
-	<None Remove="Assets\Fonts\HarmonyOS_Sans_SC_Regular.ttf" />
-	<None Remove="Assets\Fonts\HarmonyOS_Sans_SC_Thin.ttf" />
+	<None Remove="Assets\Fonts\MiSans-Bold.ttf" />
+	<None Remove="Assets\Fonts\MiSans-Light.ttf" />
+	<None Remove="Assets\Fonts\MiSans-Medium.ttf" />
+	<None Remove="Assets\Fonts\MiSans-Regular.ttf" />
+	<None Remove="Assets\Fonts\MiSans-Thin.ttf" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,12 +30,15 @@
   </ItemGroup>
 
   <ItemGroup>
-	<Resource Include="Assets\Fonts\HarmonyOS_Sans_SC_Black.ttf" />
-	<Resource Include="Assets\Fonts\HarmonyOS_Sans_SC_Bold.ttf" />
-	<Resource Include="Assets\Fonts\HarmonyOS_Sans_SC_Light.ttf" />
-	<Resource Include="Assets\Fonts\HarmonyOS_Sans_SC_Medium.ttf" />
-	<Resource Include="Assets\Fonts\HarmonyOS_Sans_SC_Regular.ttf" />
-	<Resource Include="Assets\Fonts\HarmonyOS_Sans_SC_Thin.ttf" />
+	  <None Remove="Assets\Fonts\HarmonyOS_Sans_SC_Black.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Fonts\MiSans-Bold.ttf" />
+    <Resource Include="Assets\Fonts\MiSans-Light.ttf" />
+    <Resource Include="Assets\Fonts\MiSans-Medium.ttf" />
+    <Resource Include="Assets\Fonts\MiSans-Regular.ttf" />
+    <Resource Include="Assets\Fonts\MiSans-Thin.ttf" />
   </ItemGroup>
 
 </Project>
