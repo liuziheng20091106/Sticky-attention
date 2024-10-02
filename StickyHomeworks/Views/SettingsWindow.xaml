@@ -509,13 +509,13 @@
                                         <materialDesign:Ripple Grid.Column="0" VerticalAlignment="Top"
                                             MouseDown="AppIcon_OnMouseDown">
                                             <!-- TODO: 图标 -->
-                                            <Image Source="/Assets/icon/成功 (2).png" Width="60"
+                                            <Image Source="/Assets/icon/叹号 (1).png" Width="60"
                                 Height="90" VerticalAlignment="Top" />
                                         </materialDesign:Ripple>
                                         <!-- about -->
                                         <StackPanel Grid.Column="1" Margin="10 0 0 0">
                                             <TextBlock>
-                                 <Run Text="您已是最新！" FontSize="40" FontWeight="Bold" />
+                                 <Run Text="未检查更新" FontSize="40" FontWeight="Bold" />
                                  <LineBreak />
                                 <TextBlock Margin="-1">
                                       <Run Text="版本：" FontWeight="Bold" FontSize="18"/>
@@ -529,14 +529,14 @@
                                             <WrapPanel>
                                                 <Button HorizontalAlignment="Left" Margin="8"
                               Style="{StaticResource MaterialDesignFlatButton}"
-                              Click="OpenGitHub_Click" Background="#FFFFFCFC" BorderBrush="Transparent">
-                                                    <ely:IconText Kind="restart" Text="检查更新"/>
+                              Click="OpenGitHub_Click" Background="#FFE8E8E8" BorderBrush="Transparent">
+                                                    <ely:IconText Kind="restart"  BorderBrush="Transparent" Text="检查更新并下载"/>
                                                 </Button>
 
-                                                <Button HorizontalAlignment="Left" Margin="6"
+                                                <Button HorizontalAlignment="Left" Margin="-10000"
                                          Style="{StaticResource MaterialDesignFlatButton}"
                                          Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" Background="White">
-                                                    <ely:IconText Kind="No" Text="取消更新" Loaded="IconText_Loaded"/>
+                            
                                                     <Button.CommandParameter>
                                                         <StaticResource ResourceKey="OpenSourceLicense" />
                                                     </Button.CommandParameter>
