@@ -309,4 +309,9 @@ public partial class SettingsWindow : MyWindow
     {
 
     }
+
+    private void IconText_Loaded_1(object sender, RoutedEventArgs e)
+    {
+
+    }
 }

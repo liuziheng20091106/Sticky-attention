@@ -526,19 +526,9 @@
                                             <WrapPanel>
                                                 <Button HorizontalAlignment="Left" Margin="8"
                               Style="{StaticResource MaterialDesignFlatButton}"
-                              Click="OpenGitHub_Click" Background="#FFFFFCFC" BorderBrush="Transparent">
-                                                    <ely:IconText Kind="restart" Text="检查更新"/>
+                              Click="OpenGitHub_Click" Background="#bfbfbf" BorderBrush="Transparent">
+                                                    <ely:IconText Kind="restart" Text="检查并更新"/>
                                                 </Button>
-
-                                                <Button HorizontalAlignment="Left" Margin="6"
-                                         Style="{StaticResource MaterialDesignFlatButton}"
-                                         Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" Background="White">
-                                                    <ely:IconText Kind="No" Text="取消更新" Loaded="IconText_Loaded"/>
-                                                    <Button.CommandParameter>
-                                                        <StaticResource ResourceKey="OpenSourceLicense" />
-                                                    </Button.CommandParameter>
-                                                </Button>
-
                                             </WrapPanel>
                                         </StackPanel>
                                     </Grid>
@@ -551,16 +541,12 @@
                                         <Paragraph Style="{StaticResource MarkdownHeadline1Style}">
                                             更新日志
                                         </Paragraph>
-                                        <Paragraph>
-                                            不到啊
-                                        </Paragraph>
-
-                                        <Paragraph Style="{StaticResource MarkdownHeadline2Style}"
-                                LineHeight="2">
-                                            贡献者
-                                        </Paragraph>
-                                        <Paragraph>
-                                            budaoai
+                                        <!-- 更新日志填写处 -->
+                                            <Paragraph>
+                                            1.更新系统完善！
+                                            <LineBreak/>
+                                            2.将更新-下载-解压-运行安装软件等代码开源
+                                                
                                         </Paragraph>
                                         <Paragraph>
                                         <!--    <Button HorizontalAlignment="Left" Margin="6"
