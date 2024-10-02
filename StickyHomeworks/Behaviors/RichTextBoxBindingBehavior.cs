@@ -1,11 +1,8 @@
-﻿using System.Diagnostics;
-using System.IO;
-using System.Text;
+﻿using Microsoft.Xaml.Behaviors;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
 using System.Windows.Markup;
-using Microsoft.Xaml.Behaviors;
 
 namespace StickyHomeworks.Behaviors;
 
@@ -66,7 +63,7 @@ public class RichTextBoxBindingBehavior : Behavior<RichTextBox>
                 richTextBox.Document.IsOptimalParagraphEnabled = true;
 
                 // When the document changes update the source
-                
+
             }
         ));
 

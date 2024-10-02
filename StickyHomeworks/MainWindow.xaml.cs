@@ -1,4 +1,10 @@
-﻿using System.ComponentModel;
+﻿using ElysiaFramework;
+using MaterialDesignThemes.Wpf;
+using StickyHomeworks.Models;
+using StickyHomeworks.Services;
+using StickyHomeworks.ViewModels;
+using StickyHomeworks.Views;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Windows;
@@ -7,17 +13,9 @@ using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using ElysiaFramework;
-using MaterialDesignThemes.Wpf;
-using StickyHomeworks.Models;
-using StickyHomeworks.Services;
-using StickyHomeworks.ViewModels;
-using StickyHomeworks.Views;
-using System.Windows.Forms;
 using System.Windows.Threading;
 using DataFormats = System.Windows.DataFormats;
 using DragEventArgs = System.Windows.DragEventArgs;
-using System.Drawing;
 namespace StickyHomeworks;
 
 /// <summary>
@@ -89,9 +87,9 @@ public partial class MainWindow : Window
     //        ExitEditingMode(false);
     //    }
     //}
-    
 
-    private void ExitEditingMode(bool hard=true)
+
+    private void ExitEditingMode(bool hard = true)
     {
         if (ViewModel.IsCreatingMode)
         {
@@ -188,7 +186,7 @@ public partial class MainWindow : Window
     private void CreateHomework()
     {
         ViewModel.IsUpdatingHomeworkSubject = true;
-        OnHomeworkEditorUpdated?.Invoke(this ,EventArgs.Empty);
+        OnHomeworkEditorUpdated?.Invoke(this, EventArgs.Empty);
         var lastSubject = ViewModel.EditingHomework.Subject;
         ViewModel.IsCreatingMode = true;
         ViewModel.IsDrawerOpened = true;
@@ -271,7 +269,7 @@ public partial class MainWindow : Window
         ViewModel.IsTagEditingPopupOpened = true;
     }
 
-  private void ButtonEditHomework_OnClick(object sender, RoutedEventArgs e)
+    private void ButtonEditHomework_OnClick(object sender, RoutedEventArgs e)
     {
         OnHomeworkEditorUpdated?.Invoke(this, EventArgs.Empty);
         ViewModel.IsCreatingMode = false;
@@ -408,7 +406,7 @@ public partial class MainWindow : Window
                 Stretch = Stretch.None
             };
             var bg = (System.Windows.Media.Brush)FindResource("MaterialDesignPaper");
-            context.DrawRectangle(bg, null, new Rect(0, 0, MainListView.ActualWidth * s, MainListView.ActualHeight * s)); 
+            context.DrawRectangle(bg, null, new Rect(0, 0, MainListView.ActualWidth * s, MainListView.ActualHeight * s));
             context.DrawRectangle(brush, null, new Rect(0, 0, MainListView.ActualWidth * s, MainListView.ActualHeight * s));
             context.Close();
         }
@@ -433,12 +431,12 @@ public partial class MainWindow : Window
             });
 
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             ViewModel.SnackbarMessageQueue.Enqueue($"导出失败：{ex}");
         }
 
-        done:
+    done:
         //MainListView.Background = null;
         dialog.Dispose();
         ViewModel.IsWorking = false;

@@ -1,7 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using Microsoft.Xaml.Behaviors;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
-using Microsoft.Xaml.Behaviors;
 
 namespace StickyHomeworks.Behaviors;
 

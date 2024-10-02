@@ -1,8 +1,8 @@
-﻿using System.Collections.ObjectModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Media;
-using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace StickyHomeworks.ViewModels;
 
@@ -146,7 +146,7 @@ public class HomeworkEditViewModel : ObservableRecipient
 
     public ObservableCollection<FontWeight> FontWeights { get; } = new ObservableCollection<FontWeight>()
     {
-        
+
     };
 
     public FontFamily Font

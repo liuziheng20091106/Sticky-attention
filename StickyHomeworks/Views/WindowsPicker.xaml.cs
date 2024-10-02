@@ -1,10 +1,10 @@
-﻿using System.Collections.ObjectModel;
-using System.Windows;
-using System.Windows.Forms;
-using ElysiaFramework;
+﻿using ElysiaFramework;
 using ElysiaFramework.Controls;
 using ElysiaFramework.Models;
 using StickyHomeworks.ViewModels;
+using System.Collections.ObjectModel;
+using System.Windows;
+using System.Windows.Forms;
 
 namespace StickyHomeworks.Views;
 
@@ -47,10 +47,10 @@ public partial class WindowsPicker : MyWindow
         var w = NativeWindowHelper.GetAllWindows();
         var q = ViewModel.IsFilteredFullscreen ?
             (from i in w
-            where Screen.AllScreens.Any(s => new System.Drawing.Rectangle(i.WindowRect.Left, i.WindowRect.Top,
-                i.WindowRect.Right - i.WindowRect.Left, i.WindowRect.Bottom - i.WindowRect.Top).Contains(s.Bounds) &&
-                                             i.IsVisible && i.ClassName != "WorkerW")
-            select i)
+             where Screen.AllScreens.Any(s => new System.Drawing.Rectangle(i.WindowRect.Left, i.WindowRect.Top,
+                 i.WindowRect.Right - i.WindowRect.Left, i.WindowRect.Bottom - i.WindowRect.Top).Contains(s.Bounds) &&
+                                              i.IsVisible && i.ClassName != "WorkerW")
+             select i)
             :
             from i in w where i.IsVisible select i;
         var c = new ObservableCollection<DesktopWindow>();

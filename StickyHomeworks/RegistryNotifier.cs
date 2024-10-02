@@ -1,8 +1,5 @@
-﻿using System.Runtime.InteropServices;
-using System;
-using System.Diagnostics;
-using System.Threading.Tasks;
-using Microsoft.Win32;
+﻿using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace ClassIsland;
 

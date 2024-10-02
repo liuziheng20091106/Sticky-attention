@@ -1,6 +1,6 @@
-﻿using System.ComponentModel;
+﻿using ElysiaFramework.Controls;
+using System.ComponentModel;
 using System.Windows;
-using ElysiaFramework.Controls;
 
 namespace StickyHomeworks.Views;
 
@@ -64,7 +64,7 @@ public partial class CrashWindow : MyWindow
         TextBoxCrashInfo.Copy();
     }
 
-    
+
 
     public void OpenWindow()
     {

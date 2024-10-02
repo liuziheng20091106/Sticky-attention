@@ -1,5 +1,4 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using MaterialDesignColors;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Text.Json.Serialization;
@@ -14,7 +13,7 @@ public class Settings : ObservableRecipient
     private int _selectedPlatteIndex = 0;
     private int _theme = 0;
     private Color _primaryColor = Color.FromRgb(34, 209, 236);
-    private Color _secondaryColor  = Color.FromRgb(34, 209, 236);
+    private Color _secondaryColor = Color.FromRgb(34, 209, 236);
     private int _colorSource = 1;
     private ObservableCollection<Color> _wallpaperColorPlatte = new();
     private bool _isWallpaperAutoUpdateEnabled = false;

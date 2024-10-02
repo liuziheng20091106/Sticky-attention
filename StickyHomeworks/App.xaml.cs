@@ -1,11 +1,4 @@
-﻿using System.Configuration;
-using System.Data;
-using System.Reflection;
-using System.Windows;
-using System.Windows.Forms;
-using System.Windows.Input;
-using System.Windows.Threading;
-using ClassIsland.Services;
+﻿using ClassIsland.Services;
 using ElysiaFramework;
 using ElysiaFramework.Interfaces;
 using ElysiaFramework.Services;
@@ -14,6 +7,9 @@ using Microsoft.Extensions.Hosting;
 using StickyHomeworks.Core.Context;
 using StickyHomeworks.Services;
 using StickyHomeworks.Views;
+using System.Reflection;
+using System.Windows;
+using System.Windows.Threading;
 using MessageBox = System.Windows.MessageBox;
 
 namespace StickyHomeworks;
@@ -35,7 +31,7 @@ public partial class App : AppEx
         {
             MessageBox.Show("应用已经在运行中，请勿重复启动第二个实例。");
             Environment.Exit(0);
-            
+
         }
 
         Host = Microsoft.Extensions.Hosting.Host.

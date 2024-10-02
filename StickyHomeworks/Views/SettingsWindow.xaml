@@ -523,7 +523,7 @@
                                   </TextBlock>
                                      <LineBreak />
                                      <LineBreak />
-                                     <ProgressBar x:Name="pbDown" Height="5" Width="500" Margin="0 -3 0 0" ValueChanged="pbDown_ValueChanged" IsIndeterminate="True"  />
+                                     <ProgressBar x:Name="pbDown" Height="5" Width="500" Margin="0 -3 0 0" IsIndeterminate="True"  />
                                       <Label Name="labelProgress" Content="0%" Visibility="Collapsed" />
                                             </TextBlock>
                                             <WrapPanel>

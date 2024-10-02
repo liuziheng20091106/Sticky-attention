@@ -1,7 +1,7 @@
-﻿using System.Windows.Controls;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using MaterialDesignThemes.Wpf;
 using StickyHomeworks.Models;
+using System.Windows.Controls;
 
 namespace StickyHomeworks.ViewModels;
 

@@ -1,6 +1,6 @@
-﻿using System.Collections.ObjectModel;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using ElysiaFramework.Models;
+using System.Collections.ObjectModel;
 
 namespace StickyHomeworks.ViewModels;
 

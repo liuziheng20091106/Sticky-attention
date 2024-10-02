@@ -1,10 +1,9 @@
-﻿using System.Drawing.Imaging;
-using System.Drawing;
+﻿using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Runtime.InteropServices;
-using System.Windows.Media.Imaging;
 using System.Windows;
-using System;
+using System.Windows.Media.Imaging;
 
 namespace ClassIsland;
 
@@ -25,7 +24,7 @@ public class BitmapConveters
         DeleteObject(intPtrl);
         return bitmapSource;
     }
-    public static BitmapImage ConvertToBitmapImage(Bitmap bitmap, int? w=null, int? h=null)
+    public static BitmapImage ConvertToBitmapImage(Bitmap bitmap, int? w = null, int? h = null)
     {
         using (MemoryStream stream = new MemoryStream())
         {
@@ -34,7 +33,7 @@ public class BitmapConveters
             BitmapImage result = new BitmapImage();
             result.BeginInit();
             result.CacheOption = BitmapCacheOption.OnLoad;
-            if (h != null && h<=bitmap.Height)
+            if (h != null && h <= bitmap.Height)
             {
                 result.DecodePixelWidth = (int)((double)bitmap.Width / (double)bitmap.Height * (double)h);
                 result.DecodePixelHeight = h.Value;

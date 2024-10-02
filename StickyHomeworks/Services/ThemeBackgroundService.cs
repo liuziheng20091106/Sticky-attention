@@ -1,11 +1,11 @@
-﻿using System.ComponentModel;
-using System.Diagnostics;
+﻿using ClassIsland.Services;
 using ElysiaFramework;
-using System.Windows.Media;
-using ClassIsland.Services;
 using ElysiaFramework.Interfaces;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Win32;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Windows.Media;
 
 namespace StickyHomeworks.Services;
 

@@ -8,7 +8,7 @@ public class ColorOctTreeNode
     public int LeafNum = 0;
     public List<ColorOctTreeNode>[] ToReduce = Enumerable.Repeat(new List<ColorOctTreeNode>(), 8).ToArray();
 
-    public ColorOctTreeNode?[] Children = new ColorOctTreeNode?[8] {null, null , null , null , null , null , null , null };
+    public ColorOctTreeNode?[] Children = new ColorOctTreeNode?[8] { null, null, null, null, null, null, null, null };
     public bool IsLeaf = false;
     public int r = 0;
     public int g = 0;
@@ -47,7 +47,7 @@ public class ColorOctTreeNode
         else
         {
             var str = "";
-            
+
             var r1 = Convert.ToString(color.R, 2).PadLeft(8, '0');
             var g1 = Convert.ToString(color.G, 2).PadLeft(8, '0');
             var b1 = Convert.ToString(color.B, 2).PadLeft(8, '0');
@@ -139,7 +139,7 @@ public class ColorOctTreeNode
             for (var y = 0; y < img.Height; y++)
             {
                 root.AddColor(img.GetPixel(x, y), 0);
-                while (root.LeafNum > 16) 
+                while (root.LeafNum > 16)
                 {
                     root.ReduceTree();
                 }

@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Windows.Media.Imaging;
-using System.Windows.Threading;
-using ElysiaFramework;
+﻿using ElysiaFramework;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Win32;
 using StickyHomeworks;
 using StickyHomeworks.Services;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Drawing;
+using System.Runtime.CompilerServices;
+using System.Windows.Forms;
+using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 using Application = System.Windows.Application;
 using Color = System.Windows.Media.Color;
 using ColorConverter = System.Windows.Media.ColorConverter;
@@ -154,7 +149,7 @@ public sealed class WallpaperPickingService : IHostedService, INotifyPropertyCha
             var k = Registry.CurrentUser.OpenSubKey("Control Panel\\Desktop");
             var path = (string?)k?.GetValue("WallPaper");
             var b = Screen.PrimaryScreen.Bounds;
-            return path == null? null : new Bitmap(Image.FromFile(path), b.Width, b.Height);
+            return path == null ? null : new Bitmap(Image.FromFile(path), b.Width, b.Height);
         }
         catch
         {
@@ -245,7 +240,7 @@ public sealed class WallpaperPickingService : IHostedService, INotifyPropertyCha
 
     public Task StartAsync(CancellationToken cancellationToken)
     {
-        return new Task(() => {});
+        return new Task(() => { });
     }
 
     public Task StopAsync(CancellationToken cancellationToken)
