@@ -509,24 +509,27 @@
                                         <materialDesign:Ripple Grid.Column="0" VerticalAlignment="Top"
                                             MouseDown="AppIcon_OnMouseDown">
                                             <!-- TODO: 图标 -->
-                                            <Image Source="/Assets/icon/成功 (2).png" Width="60"
+                                            <Image  x:Name="statusIcon" Source="/Assets/icon/帮助.png" Width="60"
                                 Height="90" VerticalAlignment="Top" />
                                         </materialDesign:Ripple>
                                         <!-- about -->
                                         <StackPanel Grid.Column="1" Margin="10 0 0 0">
                                             <TextBlock>
-                                 <Run Text="您已是最新！" FontSize="40" FontWeight="Bold" />
+                                 <Run Text="未获取更新" x:Name="versionStatusTextBlock" FontSize="40" FontWeight="Medium" />
                                  <LineBreak />
                                 <TextBlock Margin="-1">
                                       <Run Text="版本：" FontWeight="Bold" FontSize="18"/>
                                       <Run Text="{x:Static ci:App.AppVersion}" FontSize="18" />
-                                 </TextBlock>
-                                 <LineBreak />
+                                  </TextBlock>
+                                     <LineBreak />
+                                     <LineBreak />
+                                     <ProgressBar x:Name="pbDown" Height="5" Width="500" Margin="0 -3 0 0" ValueChanged="pbDown_ValueChanged" IsIndeterminate="True"  />
+                                      <Label Name="labelProgress" Content="0%" Visibility="Collapsed" />
                                             </TextBlock>
                                             <WrapPanel>
-                                                <Button HorizontalAlignment="Left" Margin="8"
+                                                <Button HorizontalAlignment="Left" Margin="10"
                               Style="{StaticResource MaterialDesignFlatButton}"
-                              Click="OpenGitHub_Click" Background="#bfbfbf" BorderBrush="Transparent">
+                              Click="Check_for_updates" Background="#bfbfbf" BorderBrush="Transparent">
                                                     <ely:IconText Kind="restart" Text="检查并更新"/>
                                                 </Button>
                                             </WrapPanel>
