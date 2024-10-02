@@ -24,7 +24,7 @@ namespace StickyHomeworks.Views;
 /// </summary>
 public partial class SettingsWindow : MyWindow
 {
-    private const string UpdateUrl = "http://yourserver.com/autoupdater.xml";
+    private const string UpdateUrl = "https://sticky-attention.sheng12.site/index.xml";
     private const string IconPath01 = "/Assets/icon/上传 (1).png"; // 有最新版本时的图标
     private const string IconPath02 = "/Assets/icon/成功 (2).png"; // 没有最新版本时的图标
     private const string IconPath03 = "/Assets/icon/叹号 (1).png"; // 有最新版本且下载完毕时的图标
