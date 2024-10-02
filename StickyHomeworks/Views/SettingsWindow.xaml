@@ -522,6 +522,9 @@
                                       <Run Text="{x:Static ci:App.AppVersion}" FontSize="18" />
                                  </TextBlock>
                                  <LineBreak />
+                                 <ProgressBar Name="pbDown" ValueChanged="pbDown_ValueChanged" IsIndeterminate="True"
+                                                              Minimum="0"  Maximum="100"  Foreground="Black" Background="Green"
+                                                              Visibility="Collapsed" HorizontalAlignment="Left" />
                                             </TextBlock>
                                             <WrapPanel>
                                                 <Button HorizontalAlignment="Left" Margin="8"

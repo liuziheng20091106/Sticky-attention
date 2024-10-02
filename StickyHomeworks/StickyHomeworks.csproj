@@ -30,12 +30,12 @@
     <None Remove="Assets\AppLogo.png" />
     <None Remove="Assets\Contributiors\HelloWRC%4064w.jpg" />
     <None Remove="Assets\" />
-    <None Remove="Assets\icon\上传.png" />
+    <None Remove="Assets\icon\上传 (1).png" />
     <None Remove="Assets\icon\减少.png" />
     <None Remove="Assets\icon\刷新.png" />
-    <None Remove="Assets\icon\叹号.png" />
+    <None Remove="Assets\icon\叹号 (1).png" />
+    <None Remove="Assets\icon\帮助.png" />
     <None Remove="Assets\icon\成功 (2).png" />
-    <None Remove="Assets\icon\成功.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="E:\Coding\StickyHomeworks\StickyHomeworks\.editorconfig" />
