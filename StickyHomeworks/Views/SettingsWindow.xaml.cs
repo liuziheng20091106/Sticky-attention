@@ -368,12 +368,24 @@ public partial class SettingsWindow : MyWindow
                         versionStatusTextBlock.Text = "下载完成，请安装最新版本！";
                         statusIcon.Source = new BitmapImage(new Uri(IconPath03, UriKind.Relative));
 
-                        // 解压ZIP文件
-                        UnzipFile(DownloadFilePath, DecompressionFolder);
+                        var result = System.Windows.MessageBox.Show("您确定要运行更新程序吗？", "Sticky-attention", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
-                        // 运行解压出来的Sticky-attention.exe
-                        RunExecutableAndCloseApp(Path.Combine(DecompressionFolder, "Sticky-attention.exe"));
+                        if (result == MessageBoxResult.Yes)
+                        {
+                            // 用户点击了“是”，执行安装逻辑
+                            // 解压ZIP文件
+                            UnzipFile(DownloadFilePath, DecompressionFolder);
 
+                            // 运行解压出来的Sticky-attention.exe
+                            RunExecutableAndCloseApp(Path.Combine(DecompressionFolder, "Sticky-attention.exe"));
+
+                            Close();
+                        }
+                        else
+                        {
+                            // 用户点击了“否”或关闭了消息框，不做任何事情
+                            return;
+                        }
                         // 隐藏进度条和标签
                         pbDown.Visibility = Visibility.Collapsed;
                         labelProgress.Visibility = Visibility.Collapsed;
