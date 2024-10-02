@@ -1,7 +1,12 @@
 ﻿using System.ComponentModel;
 using System.Diagnostics;
+using System.IO.Compression;
+using System.IO;
+using System.Net;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
+using System.Xml.Linq;
 using ClassIsland.Services;
 using ElysiaFramework;
 using ElysiaFramework.Controls;
@@ -9,6 +14,9 @@ using MaterialDesignThemes.Wpf;
 using StickyHomeworks.Models;
 using StickyHomeworks.Services;
 using StickyHomeworks.ViewModels;
+using System.Data;
+using System.Net.Http;
+using System.Windows.Documents;
 
 namespace StickyHomeworks.Views;
 /// <summary>
@@ -22,6 +30,7 @@ public partial class SettingsWindow : MyWindow
     private const string IconPath03 = "/Assets/icon/叹号 (1).png"; // 有最新版本且下载完毕时的图标
     private const string DownloadFilePath = "update.zip";
     private const string DecompressionFolder = "Decompression update";
+    private readonly MainViewModel _viewModel;
 
 
     public SettingsViewModel ViewModel
@@ -317,4 +326,253 @@ public partial class SettingsWindow : MyWindow
     {
 
     }
+
+    private void Check_for_updates(object sender, RoutedEventArgs e)
+    {
+        // 显示进度条和标签
+        pbDown.Visibility = Visibility.Visible;
+
+        // 模拟异步检查更新
+        var checkUpdateTask = Task.Run(() => CheckForUpdates());
+    }
+
+    private async void CheckForUpdates()
+    {
+        using (var client = new WebClient())
+        {
+            try
+            {
+                // 获取最新版本信息
+                var xmlContent = await client.DownloadStringTaskAsync(new Uri(UpdateUrl));
+                var updateInfo = ParseUpdateInfoFromXml(xmlContent);
+
+                if (IsNewerVersion(updateInfo.Version, GetCurrentVersion()))
+                {
+                    // 有新版本
+                    Dispatcher.Invoke(() =>
+                    {
+                        versionStatusTextBlock.Text = "检测到最新版本";
+                        versionStatusTextBlock.FontSize = 40;
+                        versionStatusTextBlock.FontWeight = FontWeights.Bold;
+                        statusIcon.Source = new BitmapImage(new Uri(IconPath01, UriKind.Relative));
+                    });
+
+                    // 开始下载
+                    await DownloadUpdate(client, updateInfo.Url);
+
+                    // 下载完毕
+                    Dispatcher.Invoke(() =>
+                    {
+                        versionStatusTextBlock.Text = "下载完成，请安装最新版本！";
+                        statusIcon.Source = new BitmapImage(new Uri(IconPath03, UriKind.Relative));
+
+                        // 解压ZIP文件
+                        UnzipFile(DownloadFilePath, DecompressionFolder);
+
+                        // 关闭当前应用并运行解压出来的Sticky-attention.exe
+                        RunExecutableAndCloseApp(Path.Combine(DecompressionFolder, "Sticky-attention.exe"));
+
+                        // 隐藏进度条和标签
+                        pbDown.Visibility = Visibility.Collapsed;
+                    });
+                }
+                else
+                {
+                    // 没有新版本
+                    Dispatcher.Invoke(() =>
+                    {
+                        versionStatusTextBlock.Text = "您已是最新！";
+                        versionStatusTextBlock.FontSize = 40;
+                        versionStatusTextBlock.FontWeight = FontWeights.Bold;
+                        statusIcon.Source = new BitmapImage(new Uri(IconPath02, UriKind.Relative));
+                        MessageBox.Show("已经是最新版本！");
+                        // 隐藏进度条和标签
+                        pbDown.Visibility = Visibility.Collapsed;
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                // 处理异常
+                Dispatcher.Invoke(() =>
+                {
+                    MessageBox.Show($"检查更新时发生错误: {ex.Message}");
+                    // 隐藏进度条和标签
+                    pbDown.Visibility = Visibility.Collapsed;
+                });
+            }
+        }
+    }
+
+    private async Task DownloadUpdate(WebClient client, string url)
+    {
+        client.DownloadProgressChanged += Client_DownloadProgressChanged;
+        client.DownloadFileCompleted += Client_DownloadFileCompleted;
+
+        // 开始下载
+        await client.DownloadFileTaskAsync(new Uri(url), DownloadFilePath);
+    }
+
+    private void Client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+    {
+        // 更新进度条
+        Dispatcher.Invoke(() =>
+        {
+            pbDown.Value = e.ProgressPercentage;
+        });
+    }
+
+    private void Client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+    {
+        if (e.Error != null)
+        {
+            // 处理错误
+            Dispatcher.Invoke(() =>
+            {
+                MessageBox.Show($"下载失败: {e.Error.Message}");
+                // 隐藏进度条和标签
+                pbDown.Visibility = Visibility.Collapsed;
+            });
+        }
+        else
+        {
+            // 下载完成
+        }
+    }
+
+    private void UnzipFile(string zipFilePath, string outputFolder)
+    {
+        if (!Directory.Exists(outputFolder))
+        {
+            Directory.CreateDirectory(outputFolder);
+        }
+
+        using (ZipArchive archive = ZipFile.OpenRead(zipFilePath))
+        {
+            foreach (ZipArchiveEntry entry in archive.Entries)
+            {
+                string fullPath = Path.Combine(outputFolder, entry.FullName);
+                if (string.IsNullOrEmpty(entry.Name))
+                {
+                    Directory.CreateDirectory(fullPath);
+                }
+                else
+                {
+                    entry.ExtractToFile(fullPath, true);
+                }
+            }
+        }
+    }
+
+    private void RunExecutableAndCloseApp(string filePath)
+    {
+        try
+        {
+            // 关闭当前应用程序
+            Application.Current.Shutdown();
+
+            // 启动新的可执行文件
+            Process.Start(filePath);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"无法启动程序: {ex.Message}");
+        }
+    }
+
+    private bool IsNewerVersion(string remoteVersion, string currentVersion)
+    {
+        return Version.Parse(remoteVersion) > Version.Parse(currentVersion);
+    }
+
+    private string GetCurrentVersion()
+    {
+        // 获取当前应用版本
+        return "1.1.0"; // 这里应该替换为获取实际版本的方法
+    }
+
+    private (string Version, string Url, string Changelog, bool Mandatory) ParseUpdateInfoFromXml(string xmlContent)
+    {
+        XDocument doc = XDocument.Parse(xmlContent);
+        var versionElement = doc.Root.Element("Version");
+        var urlElement = doc.Root.Element("Url");
+        var changelogElement = doc.Root.Element("Changelog");
+        var mandatoryElement = doc.Root.Element("Mandatory");
+
+        string version = versionElement?.Value ?? "0.0.0";
+        string url = urlElement?.Value ?? string.Empty;
+        string changelog = changelogElement?.Value ?? string.Empty;
+        bool mandatory = bool.TryParse(mandatoryElement?.Value, out bool isMandatory) && isMandatory;
+
+        return (version, url, changelog, mandatory);
+    }
+
+    public SettingsWindow()
+    {
+        InitializeComponent();
+        _viewModel = new MainViewModel();
+        DataContext = _viewModel;
+    }
+
+    private async void CheckForUpdates_Click(object sender, RoutedEventArgs e)
+    {
+        string updateUrl = "https://pan.cyteam.cn/f/5XVta/AutoUpdater.xml"; // 替换为实际的XML文件URL
+        UpdateStatus.Text = "正在检查更新...";
+
+        XDocument doc = await DownloadAndParseXmlAsync(updateUrl);
+        if (doc != null)
+        {
+            var version = doc.Root.Element("Version").Value;
+            var changelog = doc.Root.Element("Changelog").Value;
+            var mandatory = bool.Parse(doc.Root.Element("Mandatory").Value);
+
+            UpdateStatus.Text = $"最新版本: {version}";
+
+            ChangelogParagraph.Inlines.Clear();
+            ChangelogParagraph.Inlines.Add(new Run(changelog));
+
+            if (mandatory)
+            {
+                MessageBox.Show("有强制更新，请立即更新！");
+            }
+            else
+            {
+                MessageBox.Show("有新版本可用，是否现在更新？", "更新提示", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            }
+        }
+        else
+        {
+            UpdateStatus.Text = "无法获取更新信息";
+        }
+    }
+
+    private async Task<XDocument> DownloadAndParseXmlAsync(string url)
+    {
+        using (HttpClient client = new HttpClient())
+        {
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync(url);
+                response.EnsureSuccessStatusCode();
+                string xmlContent = await response.Content.ReadAsStringAsync();
+                return XDocument.Parse(xmlContent);
+            }
+            catch (HttpRequestException ex)
+            {
+                MessageBox.Show($"请求更新信息时出错: {ex.Message}");
+                return null;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"解析更新信息时出错: {ex.Message}");
+                return null;
+            }
+        }
+    }
+
+    //private void UIElement_OnPreviewMouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
+    //{
+    //    // 你可以在这里处理鼠标滚轮事件
+    //    e.Handled = true; // 阻止默认滚动行为
+    //}
 }

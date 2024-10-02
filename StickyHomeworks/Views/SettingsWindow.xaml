@@ -509,13 +509,12 @@
                                         <materialDesign:Ripple Grid.Column="0" VerticalAlignment="Top"
                                             MouseDown="AppIcon_OnMouseDown">
                                             <!-- TODO: 图标 -->
-                                            <Image Source="/Assets/icon/叹号 (1).png" Width="60"
-                                Height="90" VerticalAlignment="Top" />
+                                            <Image x:Name="statusIcon" Source="/Assets/icon/叹号 (1).png" Width="60" Height="90" VerticalAlignment="Top" />
                                         </materialDesign:Ripple>
                                         <!-- about -->
                                         <StackPanel Grid.Column="1" Margin="10 0 0 0">
                                             <TextBlock>
-                                 <Run Text="未检查更新" FontSize="40" FontWeight="Bold" />
+                                 <Run x:Name="versionStatusTextBlock" Text="未检查更新" FontSize="40" FontWeight="Bold" />
                                  <LineBreak />
                                 <TextBlock Margin="-1">
                                       <Run Text="版本：" FontWeight="Bold" FontSize="18"/>
@@ -528,15 +527,15 @@
                                             </TextBlock>
                                             <WrapPanel>
                                                 <Button HorizontalAlignment="Left" Margin="8"
-                              Style="{StaticResource MaterialDesignFlatButton}"
-                              Click="OpenGitHub_Click" Background="#FFE8E8E8" BorderBrush="Transparent">
-                                                    <ely:IconText Kind="restart"  BorderBrush="Transparent" Text="检查更新并下载"/>
+                                                Style="{StaticResource MaterialDesignFlatButton}"
+                                               Click="CheckForUpdates_Click" Background="#FFE8E8E8" BorderBrush="Transparent">
+                                                <ely:IconText Kind="restart"  BorderBrush="Transparent" Text="检查更新并下载" x:Name="UpdateStatus" />
                                                 </Button>
 
                                                 <Button HorizontalAlignment="Left" Margin="-10000"
                                          Style="{StaticResource MaterialDesignFlatButton}"
                                          Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" Background="White">
-                            
+
                                                     <Button.CommandParameter>
                                                         <StaticResource ResourceKey="OpenSourceLicense" />
                                                     </Button.CommandParameter>
@@ -546,24 +545,16 @@
                                         </StackPanel>
                                     </Grid>
                                 </StackPanel>
-                                <FlowDocumentScrollViewer ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                                       IsSelectionEnabled="False"
-                                       PreviewMouseWheel="UIElement_OnPreviewMouseWheel"
-                                       ContextMenu="{x:Null}">
-                                    <FlowDocument FontFamily="{StaticResource MiSans}">
-                                        <Paragraph Style="{StaticResource MarkdownHeadline1Style}">
-                                            更新日志
-                                        </Paragraph>
-                                        <Paragraph>
+                                <FlowDocumentScrollViewer Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                  IsSelectionEnabled="False"
+                                  PreviewMouseWheel="UIElement_OnPreviewMouseWheel"
+                                  ContextMenu="{x:Null}">
+                                        <FlowDocument FontFamily="{StaticResource MiSans}">
+                                            <Paragraph Style="{StaticResource MarkdownHeadline1Style}">
+                                                更新日志
+                                            </Paragraph>
+                                        <Paragraph x:Name="ChangelogParagraph">
                                             不到啊
-                                        </Paragraph>
-
-                                        <Paragraph Style="{StaticResource MarkdownHeadline2Style}"
-                                LineHeight="2">
-                                            贡献者
-                                        </Paragraph>
-                                        <Paragraph>
-                                            budaoai
                                         </Paragraph>
                                         <Paragraph>
                                         <!--    <Button HorizontalAlignment="Left" Margin="6"
@@ -827,7 +818,7 @@
                                        ToolTip="应用版本"/>
 
                             <materialDesign:PopupBox Margin="8 0 -8 0" ToolTip="更多选项…" StaysOpen="False"
-                                                     IsPopupOpen="{Binding ViewModel.IsPopupMenuOpened, Mode=TwoWay}">
+                                                     IsPopupOpen="{Binding ViewModel.IsPopupMenuOpened, Mode=TwoWay}" Height="26">
                                 <StackPanel>
                                     <MenuItem Icon="{materialDesign:PackIcon Code}" Header="实验性功能…" Click="MenuItemExperimentalSettings_OnClick"/>
                                 </StackPanel>
