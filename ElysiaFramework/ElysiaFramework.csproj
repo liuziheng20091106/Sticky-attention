@@ -8,9 +8,9 @@
 	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	<PackageId>dev.HelloWRC.$(AssemblyName)</PackageId>
 	<Authors>JIzilin</Authors>
-	<AssemblyVersion>1.1.3.1</AssemblyVersion>
-	<FileVersion>1.1.3.1</FileVersion>
-	<Version>1.1.3.1</Version>
+	<AssemblyVersion>1.1.4.0</AssemblyVersion>
+	<FileVersion>1.1.4.0</FileVersion>
+	<Version>1.1.4.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
