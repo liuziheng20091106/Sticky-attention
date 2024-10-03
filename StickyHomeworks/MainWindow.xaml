@@ -232,7 +232,7 @@
                                         <Separator Margin="-12 4"/>
                                         <MenuItem Margin="-12 0" Icon="{materialDesign:PackIcon Refresh}" Header="恢复过期的作业" Click="MenuItemRecoverExpiredHomework_OnClick" IsEnabled="{Binding ViewModel.CanRecoverExpireHomework}"/>
                                         <MenuItem Margin="-12 0" Icon="{materialDesign:PackIcon CogOutline}" Header="设置" Click="ButtonSettings_OnClick"/>
-                                        <MenuItem Margin="-12 0" Icon="{materialDesign:PackIcon cancel}" Header="关闭应用" Click="ButtonExit_OnClick"   />
+                                        <MenuItem Margin="-12 0" Icon="{materialDesign:PackIcon cancel}" Header="关闭并保存应用" Click="ButtonExit_OnClick"   />
                                     </StackPanel>
                                 </Grid>
                             </materialDesign:PopupEx>
