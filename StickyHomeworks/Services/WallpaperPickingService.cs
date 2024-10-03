@@ -139,7 +139,8 @@ public sealed class WallpaperPickingService : IHostedService, INotifyPropertyCha
             return null;
         }
 
-        return WindowCaptureHelper.CaptureWindowBitBlt(win);
+        // 修改这里的方法名
+        return WindowCaptureHelper.CaptureWindow(win); // 使用新的方法名
     }
 
     public static Bitmap? GetFallbackWallpaper()
