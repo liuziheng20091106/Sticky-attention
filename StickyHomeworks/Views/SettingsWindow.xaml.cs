@@ -400,7 +400,6 @@ public partial class SettingsWindow : MyWindow
                         versionStatusTextBlock.FontSize = 40;
                         versionStatusTextBlock.FontWeight = FontWeights.Bold;
                         statusIcon.Source = new BitmapImage(new Uri(IconPath02, UriKind.Relative));
-                        MessageBox.Show("已经是最新版本！");
                         // 隐藏进度条和标签
                         pbDown.Visibility = Visibility.Collapsed;
                         labelProgress.Visibility = Visibility.Collapsed;
