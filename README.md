@@ -6,7 +6,8 @@
 
 forked from [HelloWRC/StickyHomeworks](https://github.com/HelloWRC/StickyHomeworks)
 
-![banner](image/banner.jpg)
+![banner](![Sa名称图标图片-封面](https://github.com/user-attachments/assets/9038127a-cb46-4b28-93f8-43bafc94d2fa)
+)
 
 ![主界面](image/%E4%B8%BB%E7%95%8C%E9%9D%A2.jpg)
 
