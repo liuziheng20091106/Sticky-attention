@@ -6,7 +6,7 @@
 
 forked from [HelloWRC/StickyHomeworks](https://github.com/HelloWRC/StickyHomeworks)
 
-![banner](image/banner0.jpg)
+![banner](image/banner.jpg)
 
 ![主界面](image/%E4%B8%BB%E7%95%8C%E9%9D%A2.jpg)
 
