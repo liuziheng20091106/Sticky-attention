@@ -210,15 +210,15 @@
         </ScrollViewer>
         <ely:BooleanToBooleanReConverter x:Key="BooleanToBooleanReConverter" />
         <StackPanel x:Key="EditSubjectDialog" VerticalAlignment="Stretch" Margin="16" MaxWidth="400">
-            <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="编辑科目名称"/>
+            <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="编辑科目" VerticalAlignment="Center" HorizontalAlignment="Center" />
             <TextBox Margin="0 6 0 0" TextWrapping="Wrap"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                      Text="{Binding ViewModel.SubjectEditText}"
                      materialDesign:HintAssist.Hint="科目名称"/>
-            <StackPanel Orientation="Horizontal" Margin="0 8 0 0" HorizontalAlignment="Right">
-                <Button Content="确定" HorizontalAlignment="Right" Style="{DynamicResource MaterialDesignFlatButton}" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" 
+            <StackPanel Orientation="Horizontal" Margin="0 30 200 0" HorizontalAlignment="Right">
+                <Button Content="确定" HorizontalAlignment="Right"  Style="{DynamicResource MaterialDesignFlatButton}" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" 
                         CommandParameter="{Binding ViewModel.SubjectEditText, Mode=OneWay}"/>
-                <Button Content="取消" HorizontalAlignment="Right" Style="{DynamicResource MaterialDesignFlatButton}" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Margin="6 0 0 0" CommandParameter="{x:Null}"/>
+                <Button Content="取消" HorizontalAlignment="Right" Style="{DynamicResource MaterialDesignFlatButton}" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Margin="3 0 0 0" CommandParameter="{x:Null}"/>
             </StackPanel>
         </StackPanel>
 
@@ -739,9 +739,21 @@
                                             关于本应用
                                         </Paragraph>
                                         <Paragraph>
-                                            注意！本应用处于早期开发阶段！大部分功能尚不完善，或存在bug，可能会在后期的版本中完善或修复本作品由【WRC】出品，由JIzilin进行二次创作！
+                                            本项目受到StickyHomeworks的启发而开发。
+                                            <LineBreak/>
+                                            界面主题和部分控件使用了WPF 框架。
+                                            <LineBreak/>
+                                            应用字体使用了小米开源的MiSans。
+                                            <LineBreak/>
+                                            协助本应用测试的同学。
+                                            <LineBreak/>
+                                            感谢jizilin为本项目提供的下载与更新资源网站。
+                                            <LineBreak/>
+                                            部分图像资源 (/Assets/*)来自米游社表情包，版权归 miHoYo所有。
+                                            <LineBreak/>
+                                            其他使用的第三方库和贡献成员，详见贡献名单和第三方库。
                                         </Paragraph>
-                                        
+
                                         <Paragraph Style="{StaticResource MarkdownHeadline2Style}"
                                                    LineHeight="2">
                                             鸣谢：
