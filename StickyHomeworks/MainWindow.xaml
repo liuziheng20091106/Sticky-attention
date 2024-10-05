@@ -230,7 +230,8 @@
                                                                           Step="0.05"/>
                                         </Grid>
                                         <Separator Margin="-12 4"/>
-                                        <MenuItem Margin="-12 0" Icon="{materialDesign:PackIcon Refresh}" Header="恢复过期的作业" Click="MenuItemRecoverExpiredHomework_OnClick" IsEnabled="{Binding ViewModel.CanRecoverExpireHomework}"/>
+                                        <MenuItem Margin="-12 0" Icon="{materialDesign:PackIcon Refresh}" Header="回退撤销的作业" Click="MenuItemRecoverExpiredHomework_OnClick" IsEnabled="{Binding ViewModel.CanRecoverExpireHomework}"/>
+                                        <MenuItem Margin="-12 0" Icon="{materialDesign:PackIcon Refresh}" Header="一键清除作业" Click="MenuItemBacktowork_OnClick" IsEnabled="{Binding ViewModel.MenuItemBacktowork}"/>
                                         <MenuItem Margin="-12 0" Icon="{materialDesign:PackIcon CogOutline}" Header="设置" Click="ButtonSettings_OnClick"/>
                                         <MenuItem Margin="-12 0" Icon="{materialDesign:PackIcon cancel}" Header="关闭并保存应用" Click="ButtonExit_OnClick"   />
                                     </StackPanel>

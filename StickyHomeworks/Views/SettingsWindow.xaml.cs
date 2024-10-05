@@ -14,6 +14,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using System.Xml.Linq;
+using StickyHomeworks;
 
 namespace StickyHomeworks.Views;
 /// <summary>
@@ -524,6 +525,26 @@ public partial class SettingsWindow : MyWindow
             MessageBox.Show($"无法启动程序: {ex.Message}");
         }
     }
+
+
+
+    private void ButtonExit_OnClick(object sender, RoutedEventArgs e)
+    {
+            // 显示一个消息框询问用户是否要关闭程序
+            var result = System.Windows.MessageBox.Show("您确定要执行吗？", "风险提示", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (result == MessageBoxResult.Yes)
+            {
+            // 如果用户选择“是”，则执行关闭逻辑
+            Application.Current.Shutdown();
+            Close();
+        }
+            else
+            {
+                // 如果用户选择“否”，则不执行任何操作
+                return;
+            }
+        }
 
 }
 

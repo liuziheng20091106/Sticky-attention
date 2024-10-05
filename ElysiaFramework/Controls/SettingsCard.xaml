@@ -15,12 +15,12 @@
         <converters:BooleanToVisibilityReConverter x:Key="BooleanToVisibilityReConverter"/>
     </UserControl.Resources>
 
-    <Border CornerRadius="10"  BorderBrush="Gray" BorderThickness="1">
+    <Border CornerRadius="20"  BorderBrush="Gray" BorderThickness="1.2">
         <Grid ClipToBounds="True">
             <materialDesign:Card
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Center"
-                Padding="12 10 10 20"
+                Padding="12 10 10 10"
                 Background="Transparent">
                 <controls:SettingsControl 
                     Header="{Binding Header, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type controls:SettingsCard}}}"

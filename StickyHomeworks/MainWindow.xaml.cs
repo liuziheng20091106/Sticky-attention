@@ -131,16 +131,14 @@ namespace StickyHomeworks
             }
         }
 
-        protected override void OnInitialized(EventArgs e)
+        protected  void OnInitialized(EventArgs e)
         {
             // 初始化时清理过期作业
             ViewModel.ExpiredHomeworks = ProfileService.CleanupOutdated();
             if (ViewModel.ExpiredHomeworks.Count > 0)
             {
                 ViewModel.CanRecoverExpireHomework = true;
-                // 如果有过期作业，显示提示信息，并提供恢复选项
-                ViewModel.SnackbarMessageQueue.Enqueue($"清除了{ViewModel.ExpiredHomeworks.Count}条过期的作业。",
-                    "恢复", (o) => { RecoverExpiredHomework(); }, null, false, false, TimeSpan.FromSeconds(20));
+                // 如果有过期作业，显示提示信息，并提供恢复选项（误了）
             }
             base.OnInitialized(e);
         }
@@ -555,6 +553,15 @@ namespace StickyHomeworks
             RecoverExpiredHomework();
         }
 
+        private void MenuItemBacktowork_OnClick(object sender , RoutedEventArgs e)
+        {
+            ViewModel.ExpiredHomeworks = ProfileService.CleanupOutdated();
+            if (ViewModel.ExpiredHomeworks.Count > 0)
+            {
+                ViewModel.CanRecoverExpireHomework = true;
+                // 如果有过期作业，显示提示信息，并提供恢复选项（误了）
+            }
+        }
         private void ButtonRestart_OnClick(object sender, RoutedEventArgs e)
         {
             // 点击重启按钮，重启应用程序

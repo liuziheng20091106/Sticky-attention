@@ -30,7 +30,6 @@
     <Window.Resources>
         <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesignListBoxItem}"
                x:Key="NotificationsListBoxItemStyle">
-                                                         
         </Style>
         <ely:ColorToColorPickerBrushConverter x:Key="ColorToColorPickerBrushConverter"/>
         <Style TargetType="StackPanel" x:Key="SettingsPageStackPanelStyle">
@@ -184,8 +183,8 @@
                 <models:ContributionLabel Title="mdWpf-notifyicon"
                                           License="The Code Project Open License (CPOL) 1.02"
                                           Website="https://github.com/hardcodet/mdWpf-notifyicon" />
-                <models:ContributionLabel Title="HarmonyOS Sans" License="-"
-                                          Website="https://developer.harmonyos.com/cn/design/resource" />
+                <models:ContributionLabel Title="MiSans" License="-"
+                                          Website="https://hyperos.mi.com/font/download" />
                 <models:ContributionLabel Title="MVVM Toolkit"
                                           Website="https://github.com/CommunityToolkit/dotnet"
                                           License="MIT License" />
@@ -256,6 +255,7 @@
                     <TabItem  Header="基本">
                         <ScrollViewer >
                             <StackPanel Style="{StaticResource SettingsPageStackPanelStyle}">
+                                <ely:IconText Kind="CogOutline" Text="基本" Margin="0 0 0 8"/>
                                 <!-- 开机自启 -->
                                 <ely:SettingsCard IconGlyph="AutomaticStart" Header="开机自启"
                                                        Description="在系统启动时自动运行本应用。"
@@ -283,7 +283,11 @@
                                                              materialDesign:TextFieldAssist.SuffixText="px"/>
                                     </ely:SettingsCard.Switcher>
                                 </ely:SettingsCard>
-                                
+                                <ely:IconText Kind="LedOn" Text="其他" Margin="0 0 0 8"/>
+                                <ely:SettingsCard IconGlyph="LayersOutline" Header="窗口置底"
+                                 Description="将窗口置于底端。"
+                                  IsOn="{Binding Settings.IsBottom, Mode=TwoWay}" />
+
                             </StackPanel>
                         </ScrollViewer>
                     </TabItem>
@@ -803,6 +807,7 @@
                                 <MenuItem Icon="{materialDesign:PackIcon BugOutline}" Header="崩溃测试" Click="ButtonCrash_OnClick"/>
                                 <MenuItem IsCheckable="True" IsChecked="{Binding Settings.IsDebugShowInTaskBar}" Header="在任务栏显示图标"/>
                                 <MenuItem Icon="{materialDesign:PackIcon LightningBoltOutline}" Header="测试作业编辑窗口" Click="MenuItemTestHomeworkEditWindow_OnClick"/>
+                                <MenuItem Icon="{materialDesign:PackIcon cancel}" Header="不保留数据关闭应用" Click="ButtonExit_OnClick"/>
                                 <RichTextBox>
                                     <FlowDocument IsHyphenationEnabled="False"
                                                   IsOptimalParagraphEnabled="True">

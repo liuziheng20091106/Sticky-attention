@@ -24,6 +24,7 @@ public class MainViewModel : ObservableRecipient
     private bool _isUpdatingHomeworkSubject = false;
     private List<Homework> _expiredHomeworks = new();
     private bool _canRecoverExpireHomework = false;
+    private bool _MenuItemBacktowork = true;
 
     public Control? SelectedListBoxItem
     {
@@ -165,6 +166,7 @@ public class MainViewModel : ObservableRecipient
             if (Equals(value, _expiredHomeworks)) return;
             _expiredHomeworks = value;
             OnPropertyChanged();
+            MenuItemBacktowork = ExpiredHomeworks.Count > 0; // 更新按钮的可用状态
         }
     }
 
@@ -176,6 +178,22 @@ public class MainViewModel : ObservableRecipient
             if (value == _canRecoverExpireHomework) return;
             _canRecoverExpireHomework = value;
             OnPropertyChanged();
+        }
+    }
+
+    public bool MenuItemBacktowork
+    {
+        get => _MenuItemBacktowork;
+        set
+        {
+            if (value == _MenuItemBacktowork)
+            {
+                // 如果值未改变，不执行任何操作
+                _MenuItemBacktowork = true;
+                return;
+            }
+
+            // 在值改变时执行其他需要的操作
         }
     }
 }

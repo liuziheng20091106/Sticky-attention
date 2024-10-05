@@ -112,4 +112,6 @@ public class SettingsViewModel : ObservableRecipient
             OnPropertyChanged();
         }
     }
+
+    public bool IsClosing { get; internal set; }
 }
