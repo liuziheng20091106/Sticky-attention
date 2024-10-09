@@ -10,6 +10,9 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Media;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.Input;
+using System.Windows.Interop;
+using System.Windows.Media.Imaging;
 
 namespace StickyHomeworks.Views;
 
@@ -21,6 +24,8 @@ public partial class HomeworkEditWindow : Window, INotifyPropertyChanged
     private RichTextBox _relatedRichTextBox = new();
     public MainWindow MainWindow { get; }
     public SettingsService SettingsService { get; }
+    public ICommand AddImageCommand { get; }
+
 
     public HomeworkEditViewModel ViewModel { get; } = new();
 
@@ -47,15 +52,85 @@ public partial class HomeworkEditWindow : Window, INotifyPropertyChanged
         Hide();
     }
 
+
     public HomeworkEditWindow(MainWindow mainWindow, SettingsService settingsService)
     {
         MainWindow = mainWindow;
         SettingsService = settingsService;
         DataContext = this;
         InitializeComponent();
+
+        AddImageCommand = new RelayCommand(AddImageToRichTextBox);
+
         ViewModel.PropertyChanged += ViewModelOnPropertyChanged;
-        Loaded += HomeworkEditWindow_Loaded;  // 订阅 Loaded 事件
+        Loaded += HomeworkEditWindow_Loaded;
     }
+
+    private void AddImageToRichTextBox()
+    {
+        var openFileDialog = new Microsoft.Win32.OpenFileDialog
+        {
+            Title = "选择图片",
+            Filter = "图片文件 (*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png",
+            Multiselect = false
+        };
+
+        if (openFileDialog.ShowDialog() == true)
+        {
+            string filePath = openFileDialog.FileName;
+
+            // 加载图片
+            BitmapImage bitmapImage = new BitmapImage();
+            bitmapImage.BeginInit();
+            bitmapImage.UriSource = new Uri(filePath);
+            bitmapImage.EndInit();
+
+            // 创建 Image 元素
+            Image image = new Image
+            {
+                Source = bitmapImage,
+                Width = 100, // 可以根据需要调整宽度
+                Height = 100 // 可以根据需要调整高度
+            };
+
+            // 创建 InlineUIContainer 并将 Image 添加到容器
+            InlineUIContainer imageContainer = new InlineUIContainer(image);
+
+            // 创建新的段落并添加 InlineUIContainer
+            Paragraph paragraph = new Paragraph(imageContainer);
+
+            // 将段落添加到 RichTextBox 的文档中
+            RelatedRichTextBox.Document.Blocks.Add(paragraph);
+        }
+    }
+
+    private void AddImageButton_Click(object sender, RoutedEventArgs e)
+    {
+        AddImageToRichTextBox();
+    }
+
+    public class RelayCommand : ICommand
+    {
+        private readonly Action _execute;
+        private readonly Func<bool> _canExecute;
+
+        public RelayCommand(Action execute, Func<bool> canExecute = null)
+        {
+            _execute = execute;
+            _canExecute = canExecute;
+        }
+
+        public bool CanExecute(object parameter) => _canExecute == null || _canExecute();
+
+        public void Execute(object parameter) => _execute();
+
+        public event EventHandler CanExecuteChanged
+        {
+            add => CommandManager.RequerySuggested += value;
+            remove => CommandManager.RequerySuggested -= value;
+        }
+    }
+
 
     private void HomeworkEditWindow_Loaded(object sender, RoutedEventArgs e)
     {

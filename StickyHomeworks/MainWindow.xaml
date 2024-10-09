@@ -237,6 +237,9 @@
                                     </StackPanel>
                                 </Grid>
                             </materialDesign:PopupEx>
+                            <Button Content="{materialDesign:PackIcon Add, Size=18}" ToolTip="布置作业"
+                              Visibility="{Binding ViewModel.IsExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"
+                              Click="ButtonCreateHomework_OnClick" />
                             <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}"
                                           Margin="4 0"
                                           Content="{materialDesign:PackIcon UnlockedOutline}"
@@ -248,10 +251,7 @@
                             <Button Content="{materialDesign:PackIcon FileExport, Size=18}" ToolTip="导出…" 
                                     Visibility="{Binding ViewModel.IsExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"
                                     Click="ButtonExport_OnClick"/>
-                            <!--<Button Content="{materialDesign:PackIcon Add, Size=0}" ToolTip="布置作业"-->
-                                    <!--Visibility="{Binding ViewModel.IsExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"-->
-                                    <!--Click="ButtonCreateHomework_OnClick" />-->
-                           <!---> <Button Margin="4 0" Click="ButtonExpandingSwitcher_OnClick">
+                            <!---> <Button Margin="4 0" Click="ButtonExpandingSwitcher_OnClick">
                                 <Button.Style>
                                     <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignToolForegroundButton}">
                                         <Style.Triggers>

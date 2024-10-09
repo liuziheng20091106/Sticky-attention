@@ -18,14 +18,14 @@
         Background="{x:Null}"
         FontFamily="{StaticResource MiSans}"
         TextElement.FontWeight="Regular"
-        TextElement.FontSize="14"
+        TextElement.FontSize="15"
         TextOptions.TextFormattingMode="Ideal" 
         TextOptions.TextRenderingMode="Auto"   
         ResizeMode="NoResize"
         SizeToContent="Height"
         AllowsTransparency="True"
         Icon="/Assets/AppLogo.png"
-        Title="编辑作业" Height="450" Width="300">
+        Title="编辑作业" Height="350" Width="380">
     <Window.Resources>
         <ely:IntToStringConverter x:Key="IntToStringConverter" />
         <converter:ColorToBrushConverter x:Key="ColorToBrushConverter" />
@@ -34,7 +34,7 @@
         <WindowChrome CaptionHeight="22"
                       ResizeBorderThickness="4"/>
     </WindowChrome.WindowChrome>
-    <materialDesign:Card Margin="6"
+    <materialDesign:Card Margin="10"
             Background="{DynamicResource MaterialDesignPaper}">
         <Grid>
             <Grid.RowDefinitions>
@@ -46,21 +46,21 @@
             <Grid Grid.Row="0" Background="{DynamicResource MaterialDesignToolBarBackground}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
                 <materialDesign:ColorZone Grid.Column="1"
-                                          Margin="8"
+                                          Margin="7.5"
                                           Background="{DynamicResource MaterialDesignBodyLight}"
                                           Height="4"/>
             </Grid>
 
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-                <StackPanel Margin="8">
+                <StackPanel Margin="20">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
-                            <ColumnDefinition Width="4"/>
+                            <ColumnDefinition Width="5"/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <ComboBox Grid.Column="0" 
@@ -69,7 +69,7 @@
                                   SelectionChanged="Selector_OnSelectionChanged"
                                   ItemsSource="{Binding SettingsService.Settings.Subjects}"
                                   SelectedItem="{Binding MainWindow.ViewModel.SelectedHomework.Subject}"/>
-                        <DatePicker Grid.Column="2"
+                        <DatePicker Grid.Column="5"
                                     Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
                                     materialDesign:HintAssist.Hint="截止日期"
                                     SelectedDate="{Binding MainWindow.ViewModel.SelectedHomework.DueTime}"/>
@@ -99,14 +99,13 @@
                     <ely:IconText Kind="FormatBold" Text="文本"/>
                     <Grid>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom">
-                            <Button Content="{materialDesign:PackIcon EmoticonOutline}"
-                                    VerticalAlignment="Center"
-                                    Margin="4 0"
-                                    Style="{StaticResource MaterialDesignToolForegroundButton}" />
                             <Button Content="{materialDesign:PackIcon ImageAddOutline}"
-                                    VerticalAlignment="Center"
-                                    Margin="4 0"
-                                    Style="{StaticResource MaterialDesignToolForegroundButton}" />
+                             Click="AddImageButton_Click"
+                             ToolTip="插入图片"
+                             VerticalAlignment="Center"
+                             Margin="4 0"
+                              Style="{StaticResource MaterialDesignToolForegroundButton}"
+                             Command="{Binding AddImageCommand}" />
                             <Button Content="{materialDesign:PackIcon LinkAdd}"
                                     VerticalAlignment="Center"
                                     Margin="4 0"
