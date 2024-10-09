@@ -550,21 +550,17 @@
                                         </Paragraph>
                                         <!-- 更新日志填写处 -->
                                             <Paragraph>
-                                            1.更新功能及界面
+                                            1.修复了编辑作业窗口在屏幕外的问题
                                             <LineBreak/>
-                                            2.更新了MiSans字体
+                                            2.修复了输入框经常反复横跳的问题
                                             <LineBreak/>
-                                            3.优化及重构导入图片功能
+                                            3.新增功能图片插入
                                             <LineBreak/>
-                                            4.应用图标及关于里的按钮 增加调用
+                                            4.调整编辑窗口的外观
                                             <LineBreak/>
-                                            5.内置默认科目及标签
+                                            5.添加作业按钮回归
                                             <LineBreak/>
-                                            bug修复
-                                            <LineBreak/>
-                                            修复了全屏窗口后无法取消全屏bug
-                                            <LineBreak/>
-                                            修复了应用界面无法固定bug
+                                            6.修复了已知的性能问题
                                             <LineBreak/>
 
 
