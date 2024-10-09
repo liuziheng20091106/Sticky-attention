@@ -3,7 +3,6 @@
 <image src="https://avatars.githubusercontent.com/u/183182916?s=48&v=4" height="64"/>
 
 # Sticky-attention
->>>>>>> master
 
 forked from [HelloWRC/StickyHomeworks](https://github.com/HelloWRC/StickyHomeworks)
 
