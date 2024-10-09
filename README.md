@@ -1,10 +1,5 @@
 <div align="center">
 
-<image src="https://avatars.githubusercontent.com/u/183182916?s=48&v=4" height="64"/>
-
-
-forked from [HelloWRC/StickyHomeworks](https://github.com/HelloWRC/StickyHomeworks)
-
 ![banner](image/banner.jpg)
 
 ![主界面](image/%E4%B8%BB%E7%95%8C%E9%9D%A2.jpg)
