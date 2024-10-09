@@ -291,13 +291,19 @@ namespace StickyHomeworks
             // 点击编辑作业按钮，触发编辑事件
             OnHomeworkEditorUpdated?.Invoke(this, EventArgs.Empty);
             ViewModel.IsCreatingMode = false;
+
             if (ViewModel.SelectedHomework == null)
                 return;
+
             ViewModel.EditingHomework = ViewModel.SelectedHomework;
             ViewModel.IsDrawerOpened = true;
-            RepositionEditingWindow();
-            AppEx.GetService<HomeworkEditWindow>().TryOpen();
+
+            // 获取 HomeworkEditWindow 的实例并设置窗口位置
+            var editWindow = AppEx.GetService<HomeworkEditWindow>();
+            editWindow.ShowAtMousePosition(); // 在鼠标右侧打开窗口
         }
+
+
 
         private void ButtonRemoveHomework_OnClick(object sender, RoutedEventArgs e)
         {

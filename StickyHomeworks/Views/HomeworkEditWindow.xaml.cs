@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Media;
+using System.Windows.Input;
 
 namespace StickyHomeworks.Views;
 
@@ -46,6 +47,23 @@ public partial class HomeworkEditWindow : Window, INotifyPropertyChanged
         Hide();
     }
 
+    public HomeworkEditWindow(MainWindow mainWindow, SettingsService settingsService)
+    {
+        MainWindow = mainWindow;
+        SettingsService = settingsService;
+        DataContext = this;
+        InitializeComponent();
+        ViewModel.PropertyChanged += ViewModelOnPropertyChanged;
+        Loaded += HomeworkEditWindow_Loaded;  // 订阅 Loaded 事件
+    }
+
+    private void HomeworkEditWindow_Loaded(object sender, RoutedEventArgs e)
+    {
+        CenterWindowOnScreen();
+    }
+
+
+
     public RichTextBox RelatedRichTextBox
     {
         get => _relatedRichTextBox;
@@ -56,15 +74,6 @@ public partial class HomeworkEditWindow : Window, INotifyPropertyChanged
             _relatedRichTextBox = value;
             OnPropertyChanged();
         }
-    }
-
-    public HomeworkEditWindow(MainWindow mainWindow, SettingsService settingsService)
-    {
-        MainWindow = mainWindow;
-        SettingsService = settingsService;
-        DataContext = this;
-        InitializeComponent();
-        ViewModel.PropertyChanged += ViewModelOnPropertyChanged;
     }
 
     protected override void OnInitialized(EventArgs e)
@@ -186,6 +195,8 @@ public partial class HomeworkEditWindow : Window, INotifyPropertyChanged
         s.ApplyPropertyValue(TextElement.ForegroundProperty, GetValue(TextElement.ForegroundProperty));
     }
 
+
+
     private void ButtonFontSizeDecrease_OnClick(object sender, RoutedEventArgs e)
     {
         ViewModel.FontSize -= 2;
@@ -248,5 +259,47 @@ public partial class HomeworkEditWindow : Window, INotifyPropertyChanged
         field = value;
         OnPropertyChanged(propertyName);
         return true;
+    }
+
+    public void ShowAtMousePosition()
+    {
+        // 获取鼠标位置
+        var mousePosition = System.Windows.Forms.Control.MousePosition;
+
+        // 设置窗口位置为鼠标位置的右侧
+        Left = mousePosition.X + 10; // 向右偏移10个像素
+        Top = mousePosition.Y;
+
+        // 确保窗口在屏幕内
+        var screenWidth = SystemParameters.PrimaryScreenWidth;
+        var screenHeight = SystemParameters.PrimaryScreenHeight;
+
+        // 确保窗口在屏幕内
+        if (Left < 0) Left = 0;
+        if (Top < 0) Top = 0;
+        if (Left + ActualWidth > screenWidth) Left = screenWidth - ActualWidth;
+        if (Top + ActualHeight > screenHeight) Top = screenHeight - ActualHeight;
+
+        // 显示窗口
+        Show();
+    IsOpened = true; // 设置窗口状态为已打开
+    }
+
+
+
+    private void CenterWindowOnScreen()
+    {
+        var screenWidth = SystemParameters.PrimaryScreenWidth;
+        var screenHeight = SystemParameters.PrimaryScreenHeight;
+
+        // 计算窗口的中心位置
+        Left = (screenWidth - ActualWidth) / 2;
+        Top = (screenHeight - ActualHeight) / 2;
+
+        // 确保窗口在屏幕内
+        if (Left < 0) Left = 0;
+        if (Top < 0) Top = 0;
+        if (Left + ActualWidth > screenWidth) Left = screenWidth - ActualWidth;
+        if (Top + ActualHeight > screenHeight) Top = screenHeight - ActualHeight;
     }
 }

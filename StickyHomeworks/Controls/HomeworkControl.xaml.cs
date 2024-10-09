@@ -67,12 +67,14 @@ public partial class HomeworkControl : UserControl
 
     private async void EnterEdit()
     {
+        if (RichTextBox == null) return;
         AppEx.GetService<HomeworkEditWindow>().RelatedRichTextBox = RichTextBox;
         await System.Windows.Threading.Dispatcher.Yield();
+        await Task.Delay(100); // 延迟一小段时间以确保输入框获得焦点
         RichTextBox.Focus();
-        //RichTextBox.Selection.Select(new TextPointer());
-        RichTextBox.CaretPosition = RichTextBox.CaretPosition.DocumentEnd;
+        RichTextBox.CaretPosition = RichTextBox.Document.ContentEnd;
     }
+
 
     private void IsSelectedChanged(bool value)
     {
@@ -86,9 +88,18 @@ public partial class HomeworkControl : UserControl
 
     private void RichTextBox_OnKeyDown(object sender, KeyEventArgs e)
     {
-        if (e.Key == Key.Enter)
+        if (e.Key == Key.Enter && Keyboard.Modifiers == ModifierKeys.None)
         {
+            e.Handled = true; // 防止触发其他事件
             App.GetService<MainWindow>().OnTextBoxEnter();
         }
     }
+
+
+    private void RichTextBox_PreviewTouchDown(object sender, TouchEventArgs e)
+    {
+        e.Handled = true; // 阻止焦点丢失
+        ((RichTextBox)sender).Focus();
+    }
+
 }
