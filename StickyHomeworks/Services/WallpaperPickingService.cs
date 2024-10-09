@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Runtime.CompilerServices;
+using System.Threading;
 using System.Windows.Forms;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
@@ -20,34 +21,33 @@ namespace ClassIsland.Services;
 public sealed class WallpaperPickingService : IHostedService, INotifyPropertyChanged
 {
     private SettingsService SettingsService { get; }
-
     private static readonly string DesktopWindowClassName = "Progman";
     private ObservableCollection<Color> _wallpaperColorPlatte = new();
     private BitmapImage _wallpaperImage = new();
-    private bool _isWorking = false;
+    private bool _isWorking;
+    private readonly SemaphoreSlim _lock = new(1, 1);
 
-    public RegistryNotifier RegistryNotifier
-    {
-        get;
-    }
-
-    private DispatcherTimer UpdateTimer
-    {
-        get;
-    } = new DispatcherTimer()
+    public RegistryNotifier RegistryNotifier { get; }
+    private DispatcherTimer UpdateTimer { get; } = new()
     {
         Interval = TimeSpan.FromMinutes(1)
     };
 
-    public static void ColorToHsv(System.Windows.Media.Color color, out double hue, out double saturation, out double value)
+    public WallpaperPickingService(SettingsService settingsService)
     {
-        int max = Math.Max(color.R, Math.Max(color.G, color.B));
-        int min = Math.Min(color.R, Math.Min(color.G, color.B));
+        SettingsService = settingsService;
+        SystemEvents.UserPreferenceChanged += SystemEventsOnUserPreferenceChanged;
+        RegistryNotifier = new RegistryNotifier(RegistryNotifier.HKEY_CURRENT_USER, "Control Panel\\Desktop");
+        RegistryNotifier.RegistryKeyUpdated += RegistryNotifierOnRegistryKeyUpdated;
+        RegistryNotifier.Start();
 
-        hue = 0;
-        saturation = (max == 0) ? 0 : 1d - (1d * min / max);
-        value = max / 255d;
+        UpdateTimer.Tick += UpdateTimerOnTick;
+        UpdateTimer.Interval = TimeSpan.FromSeconds(SettingsService.Settings.WallpaperAutoUpdateIntervalSeconds);
+        SettingsService.Settings.PropertyChanged += SettingsServiceOnPropertyChanged;
+        UpdateTimer.Start();
     }
+
+    public event EventHandler? WallpaperColorPlatteChanged;
 
     public ObservableCollection<Color> WallpaperColorPlatte
     {
@@ -71,21 +71,6 @@ public sealed class WallpaperPickingService : IHostedService, INotifyPropertyCha
         }
     }
 
-    public WallpaperPickingService(SettingsService settingsService)
-    {
-        SettingsService = settingsService;
-        SystemEvents.UserPreferenceChanged += SystemEventsOnUserPreferenceChanged;
-        RegistryNotifier = new RegistryNotifier(RegistryNotifier.HKEY_CURRENT_USER, "Control Panel\\Desktop");
-        RegistryNotifier.RegistryKeyUpdated += RegistryNotifierOnRegistryKeyUpdated;
-        RegistryNotifier.Start();
-        UpdateTimer.Tick += UpdateTimerOnTick;
-        UpdateTimer.Interval = TimeSpan.FromSeconds(SettingsService.Settings.WallpaperAutoUpdateIntervalSeconds);
-        SettingsService.Settings.PropertyChanged += SettingsServiceOnPropertyChanged;
-        UpdateTimer.Start();
-    }
-
-    public event EventHandler? WallpaperColorPlatteChanged;
-
     private void SettingsServiceOnPropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
         if (e.PropertyName == nameof(SettingsService.Settings.WallpaperAutoUpdateIntervalSeconds))
@@ -100,57 +85,39 @@ public sealed class WallpaperPickingService : IHostedService, INotifyPropertyCha
         {
             return;
         }
-
         await GetWallpaperAsync();
     }
 
     private async void RegistryNotifierOnRegistryKeyUpdated()
     {
-        Application.Current.Dispatcher.InvokeAsync(async () =>
+        await Application.Current.Dispatcher.InvokeAsync(async () =>
         {
             await GetWallpaperAsync();
         });
-    }
-
-    private IntPtr HwndSourceHookProcess(IntPtr hwnd, int msg, IntPtr wparam, IntPtr lparam, ref bool handled)
-    {
-        if (msg == 0x0317)
-        {
-            Debug.WriteLine("printed");
-        }
-        return default;
     }
 
     private async void SystemEventsOnUserPreferenceChanged(object sender, UserPreferenceChangedEventArgs e)
     {
         if (e.Category == UserPreferenceCategory.Desktop)
         {
-            //await Task.Run(=>Thread.Sleep(TimeSpan.FromSeconds(1));
             await GetWallpaperAsync();
         }
     }
 
-
     public static Bitmap? GetScreenShot(string className)
     {
         var win = NativeWindowHelper.FindWindowByClass(className);
-        if (win == IntPtr.Zero)
-        {
-            return null;
-        }
-
-        // 修改这里的方法名
-        return WindowCaptureHelper.CaptureWindow(win); // 使用新的方法名
+        return win == IntPtr.Zero ? null : WindowCaptureHelper.CaptureWindow(win);
     }
 
     public static Bitmap? GetFallbackWallpaper()
     {
         try
         {
-            var k = Registry.CurrentUser.OpenSubKey("Control Panel\\Desktop");
-            var path = (string?)k?.GetValue("WallPaper");
-            var b = Screen.PrimaryScreen.Bounds;
-            return path == null ? null : new Bitmap(Image.FromFile(path), b.Width, b.Height);
+            var key = Registry.CurrentUser.OpenSubKey("Control Panel\\Desktop");
+            var path = key?.GetValue("WallPaper") as string;
+            var screenBounds = Screen.PrimaryScreen.Bounds;
+            return path == null ? null : new Bitmap(Image.FromFile(path), screenBounds.Width, screenBounds.Height);
         }
         catch
         {
@@ -171,82 +138,63 @@ public sealed class WallpaperPickingService : IHostedService, INotifyPropertyCha
 
     public async Task GetWallpaperAsync()
     {
-        if (IsWorking)
-        {
-            return;
-        }
+        if (IsWorking) return;
 
-        IsWorking = true;
-        await Task.Run(() =>
+        await _lock.WaitAsync();
+        try
         {
-            var bitmap = SettingsService.Settings.IsFallbackModeEnabled ?
-                (GetFallbackWallpaper())
-                :
-                (GetScreenShot(
-                    SettingsService.Settings.WallpaperClassName == ""
-                    ? DesktopWindowClassName
-                    : SettingsService.Settings.WallpaperClassName
-                ));
-            if (bitmap is null)
+            IsWorking = true;
+            await Task.Run(() =>
             {
-                return;
-            }
+                var bitmap = SettingsService.Settings.IsFallbackModeEnabled
+                    ? GetFallbackWallpaper()
+                    : GetScreenShot(SettingsService.Settings.WallpaperClassName == ""
+                        ? DesktopWindowClassName
+                        : SettingsService.Settings.WallpaperClassName);
 
-            double dpiX = 1, dpiY = 1;
-            Application.Current.Dispatcher.Invoke(() =>
-            {
-                var mw = (MainWindow)Application.Current.MainWindow!;
-                mw.GetCurrentDpi(out dpiX, out dpiY);
-            });
-            WallpaperImage = BitmapConveters.ConvertToBitmapImage(bitmap, (int)(750 * dpiX));
-            var w = new Stopwatch();
-            w.Start();
-            var right = SettingsService.Settings.TargetLightValue - 0.5;
-            var left = SettingsService.Settings.TargetLightValue + 0.5;
-            var r = ColorOctTreeNode.ProcessImage(bitmap)
-                .OrderByDescending(i =>
+                if (bitmap is null) return;
+
+                double dpiX = 1, dpiY = 1;
+                Application.Current.Dispatcher.Invoke(() =>
                 {
-                    var c = (Color)ColorConverter.ConvertFromString(i.Key);
-                    WallpaperPickingService.ColorToHsv(c, out var h, out var s, out var v);
-                    return (s + v * (-(v - right) * (v - left) * 4)) * Math.Log2(i.Value);
-                })
-                .ThenByDescending(i => i.Value)
-                .ToList();
-            WallpaperColorPlatte.Clear();
-            for (var i = 0; i < Math.Min(r.Count, 5); i++)
-            {
-                WallpaperColorPlatte.Add((Color)ColorConverter.ConvertFromString(r[i].Key));
-            }
-        });
+                    var mainWindow = (MainWindow)Application.Current.MainWindow!;
+                    mainWindow.GetCurrentDpi(out dpiX, out dpiY);
+                });
 
-        // Update cached platte
-        if (SettingsService.Settings.WallpaperColorPlatte.Count < SettingsService.Settings.SelectedPlatteIndex + 1 ||
-            SettingsService.Settings.SelectedPlatteIndex == -1 ||
-            WallpaperColorPlatte.Count < SettingsService.Settings.SelectedPlatteIndex + 1 ||
-            SettingsService.Settings.WallpaperColorPlatte[SettingsService.Settings.SelectedPlatteIndex] !=
-            WallpaperColorPlatte[SettingsService.Settings.SelectedPlatteIndex])
-        {
-            SettingsService.Settings.WallpaperColorPlatte.Clear();
-            foreach (var i in WallpaperColorPlatte)
-            {
-                SettingsService.Settings.WallpaperColorPlatte.Add(i);
-            }
-            SettingsService.Settings.SelectedPlatteIndex = 0;
+                WallpaperImage = BitmapConveters.ConvertToBitmapImage(bitmap, (int)(750 * dpiX));
+                var colorList = ColorOctTreeNode.ProcessImage(bitmap)
+                    .OrderByDescending(i =>
+                    {
+                        var color = (Color)ColorConverter.ConvertFromString(i.Key);
+                        ColorToHsv(color, out _, out var s, out var v);
+                        return s + v;
+                    })
+                    .ThenByDescending(i => i.Value)
+                    .Take(5)
+                    .Select(i => (Color)ColorConverter.ConvertFromString(i.Key))
+                    .ToList();
+
+                WallpaperColorPlatte.Clear();
+                colorList.ForEach(c => WallpaperColorPlatte.Add(c));
+            });
+
+            WallpaperColorPlatteChanged?.Invoke(this, EventArgs.Empty);
         }
-
-        IsWorking = false;
-        GC.Collect();
-        WallpaperColorPlatteChanged?.Invoke(this, EventArgs.Empty);
+        finally
+        {
+            IsWorking = false;
+            _lock.Release();
+        }
     }
 
     public Task StartAsync(CancellationToken cancellationToken)
     {
-        return new Task(() => { });
+        return Task.CompletedTask;
     }
 
     public Task StopAsync(CancellationToken cancellationToken)
     {
-        return new Task(() => { });
+        return Task.CompletedTask;
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;
@@ -256,11 +204,13 @@ public sealed class WallpaperPickingService : IHostedService, INotifyPropertyCha
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
-    private bool SetField<T>(ref T field, T value, [CallerMemberName] string? propertyName = null)
+    public static void ColorToHsv(Color color, out double hue, out double saturation, out double value)
     {
-        if (EqualityComparer<T>.Default.Equals(field, value)) return false;
-        field = value;
-        OnPropertyChanged(propertyName);
-        return true;
+        int max = Math.Max(color.R, Math.Max(color.G, color.B));
+        int min = Math.Min(color.R, Math.Min(color.G, color.B));
+
+        hue = 0;
+        saturation = (max == 0) ? 0 : 1d - (1d * min / max);
+        value = max / 255d;
     }
 }

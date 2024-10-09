@@ -2,55 +2,37 @@
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
 
-namespace StickyHomeworks.Controls;
-
-/// <summary>
-/// WindowMovingDemo.xaml 的交互逻辑
-/// </summary>
-public partial class WindowMovingDemo : UserControl
+namespace StickyHomeworks.Controls
 {
-    public WindowMovingDemo()
+    /// <summary>
+    /// WindowMovingDemo.xaml 的交互逻辑
+    /// </summary>
+    public partial class WindowMovingDemo : UserControl
     {
-        InitializeComponent();
-    }
-
-    protected override async void OnPropertyChanged(DependencyPropertyChangedEventArgs e)
-    {
-        if (e.Property == IsVisibleProperty)
+        public WindowMovingDemo()
         {
-            var loop = (Storyboard)FindResource("Loop");
+            InitializeComponent();
+            IsVisibleChanged += WindowMovingDemo_OnIsVisibleChanged;
+        }
+
+        private void WindowMovingDemo_OnIsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            var storyboard = (Storyboard)FindResource("Loop");
+
             if ((bool)e.NewValue)
             {
-                loop.Remove();
-                //loop.Seek(TimeSpan.Zero);
-                BeginStoryboard(loop);
-                //Debug.WriteLine("LOADED.");
-
+                storyboard.Begin(this, true); // 第二个参数 true 使动画以填充模式播放。
             }
             else
             {
-                loop.Remove();
-                //loop.Seek(TimeSpan.Zero);
-                //Debug.WriteLine("Unloaded.");
+                storyboard.Stop(this);
             }
         }
-        base.OnPropertyChanged(e);
-    }
 
-    private void WindowMovingDemo_OnLoaded(object sender, RoutedEventArgs e)
-    {
-        BeginStoryboard((Storyboard)FindResource("Loop"));
-    }
-
-    private void WindowMovingDemo_OnIsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
-    {
-        var sb = (Storyboard)FindResource("Loop");
-        if (IsVisible)
-            sb.Begin(this);
-        else
+        private void WindowMovingDemo_OnLoaded(object sender, RoutedEventArgs e)
         {
-            sb.Stop(this);
-            sb.Remove(this);
+            var storyboard = (Storyboard)FindResource("Loop");
+            storyboard.Begin(this, true);
         }
     }
 }

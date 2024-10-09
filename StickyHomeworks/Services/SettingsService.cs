@@ -10,6 +10,27 @@ namespace StickyHomeworks.Services;
 public class SettingsService : ObservableRecipient, IHostedService
 {
     private Settings _settings = new();
+    private System.Timers.Timer? _saveTimer;
+
+
+    public async Task StopAsync(CancellationToken cancellationToken)
+    {
+        await SaveSettingsAsync();
+    }
+
+
+    private void ScheduleSaveSettings()
+    {
+        _saveTimer?.Stop();
+        _saveTimer = new System.Timers.Timer(500); // 延迟 500 毫秒
+        _saveTimer.Elapsed += (sender, args) =>
+        {
+            SaveSettings();
+            _saveTimer?.Dispose();
+            _saveTimer = null;
+        };
+        _saveTimer.Start();
+    }
 
     public SettingsService(IHostApplicationLifetime applicationLifetime)
     {
@@ -22,21 +43,17 @@ public class SettingsService : ObservableRecipient, IHostedService
 
     private void OnOnSettingsChanged(object? sender, PropertyChangedEventArgs e)
     {
-        SaveSettings();
+        ScheduleSaveSettings();
     }
 
-    public void LoadSettings()
+    private async void LoadSettings()
     {
-        if (!File.Exists("./Settings.json"))
-        {
-            return;
-        }
-        var json = File.ReadAllText("./Settings.json");
+        if (!File.Exists("./Settings.json")) return;
+        var json = await File.ReadAllTextAsync("./Settings.json");
         var r = JsonSerializer.Deserialize<Settings>(json);
         if (r != null)
         {
             Settings = r;
-            //Settings.PropertyChanged += (sender, args) => SaveSettings();
         }
     }
 
@@ -55,12 +72,18 @@ public class SettingsService : ObservableRecipient, IHostedService
         }
     }
 
-    public async Task StartAsync(CancellationToken cancellationToken)
+    public Task StartAsync(CancellationToken cancellationToken)
     {
+        SaveSettings(); // 调用同步保存方法
+        return Task.CompletedTask;
     }
 
-    public async Task StopAsync(CancellationToken cancellationToken)
+
+
+    public async Task SaveSettingsAsync()
     {
+        var json = JsonSerializer.Serialize(Settings);
+        await File.WriteAllTextAsync("./Settings.json", json);
     }
 
     public Settings Settings
