@@ -31,6 +31,8 @@
         <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesignListBoxItem}"
                x:Key="NotificationsListBoxItemStyle">
         </Style>
+        
+
         <ely:ColorToColorPickerBrushConverter x:Key="ColorToColorPickerBrushConverter"/>
         <Style TargetType="StackPanel" x:Key="SettingsPageStackPanelStyle">
             <Setter Property="Margin" Value="12"/>
@@ -221,6 +223,11 @@
             </StackPanel>
         </StackPanel>
 
+       
+
+
+
+
         <StackPanel x:Key="EditTagDialog" VerticalAlignment="Stretch" Margin="16" MaxWidth="400">
             <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="编辑标签名称"/>
             <TextBox Margin="0 6 0 0" TextWrapping="Wrap"
@@ -234,6 +241,9 @@
             </StackPanel>
         </StackPanel>
     </Window.Resources>
+    
+    
+    
 
     <materialDesign:DialogHost Identifier="SettingsWindow">
         <materialDesign:DrawerHost RightDrawerContent="{Binding ViewModel.DrawerContent, Mode=OneWay}"
@@ -517,18 +527,18 @@
                                 Height="90" VerticalAlignment="Top" />
                                         </materialDesign:Ripple>
                                         <!-- about -->
-                                        <StackPanel Grid.Column="1" Margin="10 0 0 0">
+                                        <StackPanel Grid.Column="1" Margin="5 0 0 0">
                                             <TextBlock>
-                                 <Run Text="未获取更新" x:Name="versionStatusTextBlock" FontSize="40" FontWeight="Medium" />
+                                 <Run Text="未获取更新" x:Name="versionStatusTextBlock" FontSize="45" FontWeight="Medium" />
                                  <LineBreak />
-                                <TextBlock Margin="-1">
-                                      <Run Text="版本：" FontWeight="Bold" FontSize="18"/>
-                                      <Run Text="{x:Static ci:App.AppVersion}" FontSize="18" />
+                                <TextBlock Margin="-1" >
+                                      <Run         x:Name="versionStatusTexts"      Text="版本：" FontWeight="Bold" FontSize="18"/>
+                                      <Run        x:Name="versionStatusText"       Text="{x:Static ci:App.AppVersion}" FontSize="18" />
                                   </TextBlock>
                                      <LineBreak />
                                      <LineBreak />
                                      <ProgressBar x:Name="pbDown" Height="5" Width="500" Margin="0 -3 0 0" IsIndeterminate="True"  Minimum="0"  Maximum="100"  />
-                                      <Label Name="labelProgress" Content="-1%" Visibility="Collapsed" />
+                                      <Label Name="labelProgress" Content="-➊➊➍➎➊➍" Visibility="Collapsed" />
                                             </TextBlock>
                                             <WrapPanel>
                                                 <Button HorizontalAlignment="Left" Margin="10"
@@ -815,6 +825,7 @@
                         </ScrollViewer>
                     </TabItem>
                 </TabControl>
+
                 <materialDesign:ColorZone Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" Padding="16" Mode="PrimaryMid"
                                           materialDesign:ElevationAssist.Elevation="Dp4"
                                           Margin="0 0 0 4">
@@ -835,9 +846,13 @@
                                    Margin="0 0 0 0"
                                    VerticalAlignment="Center"/>
                         <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                            <TextBlock Text="{x:Static ci:App.AppVersion}"
-                                       VerticalAlignment="Center" 
-                                       ToolTip="应用版本"/>
+
+                            <TextBlock Margin="1">
+                          <Run Text="当前版本：" FontWeight="Bold" FontSize="15"/>
+                          <Run Text="{x:Static ci:App.AppVersion}" FontSize="15" />
+                            </TextBlock>
+                            
+                            
 
                             <materialDesign:PopupBox Margin="8 0 -8 0" ToolTip="更多选项…" StaysOpen="False"
                                                      IsPopupOpen="{Binding ViewModel.IsPopupMenuOpened, Mode=TwoWay}">

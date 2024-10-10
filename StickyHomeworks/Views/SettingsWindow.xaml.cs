@@ -315,7 +315,7 @@ public partial class SettingsWindow : MyWindow
         catch (Exception ex)
         {
             // 处理异常，例如无法打开浏览器的情况
-            MessageBox.Show($"无法打开URL: {ex.Message}");
+            MessageBox.Show($"无法打开: {ex.Message}");
         }
     }
 
@@ -328,6 +328,9 @@ public partial class SettingsWindow : MyWindow
     {
 
     }
+
+
+
 
     private void Check_for_updates(object sender, RoutedEventArgs e)
     {
@@ -355,6 +358,10 @@ public partial class SettingsWindow : MyWindow
                     Dispatcher.Invoke(() =>
                     {
                         versionStatusTextBlock.Text = "检测到最新版本";
+                        versionStatusText.Text = $"最新版本: {updateInfo.Version}"; // 显示最新版本号
+                        versionStatusText.FontSize = 18;
+                        versionStatusText.FontWeight = FontWeights.Bold;
+
                         versionStatusTextBlock.FontSize = 40;
                         versionStatusTextBlock.FontWeight = FontWeights.Bold;
                         statusIcon.Source = new BitmapImage(new Uri(IconPath01, UriKind.Relative));
@@ -369,24 +376,16 @@ public partial class SettingsWindow : MyWindow
                         versionStatusTextBlock.Text = "下载完成，请安装最新版本！";
                         statusIcon.Source = new BitmapImage(new Uri(IconPath03, UriKind.Relative));
 
-                        var result = System.Windows.MessageBox.Show("您确定要运行更新程序吗？", "Sticky-attention", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                        var result = MessageBox.Show("您确定要运行更新程序吗？", "Sticky-attention", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
                         if (result == MessageBoxResult.Yes)
                         {
                             // 用户点击了“是”，执行安装逻辑
-                            // 解压ZIP文件
                             UnzipFile(DownloadFilePath, DecompressionFolder);
-
-                            // 运行解压出来的Sticky-attention.exe
                             RunExecutableAndCloseApp(Path.Combine(DecompressionFolder, "Sticky-attention.exe"));
-
                             Close();
                         }
-                        else
-                        {
-                            // 用户点击了“否”或关闭了消息框，不做任何事情
-                            return;
-                        }
+
                         // 隐藏进度条和标签
                         pbDown.Visibility = Visibility.Collapsed;
                         labelProgress.Visibility = Visibility.Collapsed;
@@ -401,6 +400,12 @@ public partial class SettingsWindow : MyWindow
                         versionStatusTextBlock.FontSize = 40;
                         versionStatusTextBlock.FontWeight = FontWeights.Bold;
                         statusIcon.Source = new BitmapImage(new Uri(IconPath02, UriKind.Relative));
+
+                        versionStatusText.Text = $"当前版本: {App.AppVersion}"; // 显示当前版本
+                        versionStatusTexts.Text = ""; // 显示当前版本
+                        versionStatusText.FontSize = 18;
+                        versionStatusText.FontWeight = FontWeights.Bold;
+
                         // 隐藏进度条和标签
                         pbDown.Visibility = Visibility.Collapsed;
                         labelProgress.Visibility = Visibility.Collapsed;
@@ -412,14 +417,17 @@ public partial class SettingsWindow : MyWindow
                 // 处理异常
                 Dispatcher.Invoke(() =>
                 {
-                    MessageBox.Show($"检查更新时发生错误: {ex.Message}");
-                    // 隐藏进度条和标签
+                    versionStatusTextBlock.Text = "发生错误 " ; // 显示具体错误
+                    versionStatusTextBlock.FontSize = 40;
+                    versionStatusText.Text = "错误详细: " + ex.Message; // 显示具体错误
+                    versionStatusTexts.Text = "";
                     pbDown.Visibility = Visibility.Collapsed;
                     labelProgress.Visibility = Visibility.Collapsed;
                 });
             }
         }
     }
+
 
     private async Task DownloadUpdate(WebClient client, string url)
     {
@@ -447,7 +455,7 @@ public partial class SettingsWindow : MyWindow
             // 处理错误
             Dispatcher.Invoke(() =>
             {
-                MessageBox.Show($"下载失败: {e.Error.Message}");
+                versionStatusTextBlock.Text = "更新时发生错误(001)❌";
                 // 隐藏进度条和标签
                 pbDown.Visibility = Visibility.Collapsed;
                 labelProgress.Visibility = Visibility.Collapsed;

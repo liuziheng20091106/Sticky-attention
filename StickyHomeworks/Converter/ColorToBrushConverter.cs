@@ -1,18 +1,31 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace StickyHomeworks.Converter;
-
-public class ColorToBrushConverter : IValueConverter
+namespace StickyHomeworks.Converter
 {
-    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    public class ColorToBrushConverter : IValueConverter
     {
-        return new SolidColorBrush((Color)value);
-    }
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is Color color)
+            {
+                return new SolidColorBrush(color);
+            }
 
-    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-    {
-        return null;
+            // 返回一个默认的 Brush（可以是透明色），以防 value 不是 Color 类型或为空
+            return Brushes.Transparent;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is SolidColorBrush brush)
+            {
+                return brush.Color;
+            }
+
+            return null;
+        }
     }
 }
