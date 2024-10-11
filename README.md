@@ -1,16 +1,12 @@
 <div align="center">
 
-<image src="https://avatars.githubusercontent.com/u/183182916?s=48&v=4" height="64"/>
-
-# Sticky-attention
-
-forked from [HelloWRC/StickyHomeworks](https://github.com/HelloWRC/StickyHomeworks)
-
 ![banner](image/banner.jpg)
 
-![主界面](image/%E4%B8%BB%E7%95%8C%E9%9D%A2.jpg)
 
-主界面
+
+## 主界面
+
+![主界面](image/%E4%B8%BB%E7%95%8C%E9%9D%A2.jpg)
 
 [![stars](https://img.shields.io/github/stars/Sticky-attention/Sticky-attention?label=Stars)](https://github.com/Sticky-attention/Sticky-attention)
 [![forks](https://img.shields.io/github/forks/Sticky-attention/Sticky-attention?label=Forks)](https://github.com/Sticky-attention/Sticky-attention)
