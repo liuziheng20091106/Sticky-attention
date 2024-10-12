@@ -1,9 +1,5 @@
 <div align="center">
 
-<<<<<<< HEAD
-=======
-  
->>>>>>> 2cd0a6e3785d2060fc5eb7b23e60061f1d3001af
 ![banner](image/banner.jpg)
 
 ![Update Status](https://img.shields.io/badge/真新手出道-Auqamarin)<br/>
