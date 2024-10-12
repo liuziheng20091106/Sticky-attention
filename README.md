@@ -13,7 +13,7 @@
 
 Sticky-attention 是一款适用于Windows 系统教室一体机的作业显示工具，可以展示各科作业等信息，后续将添加更多新内容。
 
-#### **💬[点我加入Sticky-attention QQ 群](https://qm.qq.com/q/FbG57VTzTG)**
+#### **💬[点我加入Sticky-attention QQ 群](https://qm.qq.com/q/FbG57VTzTG) | [点我加入Sticky-attention 频道](https://pd.qq.com/s/1euf1c8t0)**
 
 
 ###### [ 观看宣传片视频，了解作者是怎么发癫的 →](https://bilibili.com/video/BV1YJ4Fe5EgD/)
