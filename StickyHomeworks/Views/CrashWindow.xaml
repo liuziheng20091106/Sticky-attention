@@ -17,25 +17,29 @@
                    mc:Ignorable="d"
                    Icon="/Assets/AppLogo.png"
                    Closing="CrashWindow_OnClosed"
-                   Title="awa" Height="450" Width="800">
+                   Title="应用问题" Height="450" Width="800">
     <Grid Margin="12">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="11*"/>
+            <ColumnDefinition Width="377*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" TextWrapping="Wrap">
+        <TextBlock Grid.Row="0" TextWrapping="Wrap" Grid.ColumnSpan="2" Margin="0,0,0,546">
             <Run Text=":(" Foreground="{DynamicResource PrimaryHueMidBrush}" FontSize="32" FontWeight="Bold"/><LineBreak/>
-            <Run Text="应用死了……" Foreground="{DynamicResource PrimaryHueMidBrush}" FontSize="20" FontWeight="Bold"/><LineBreak/><LineBreak/>
-            <Run Text="应用发生了无法解决的错误，如要将此错误反馈至开发人员！"/>
+            <Run Text="应用完了……" Foreground="{DynamicResource PrimaryHueMidBrush}" FontSize="20" FontWeight="Bold"/><LineBreak/><LineBreak/>
+            <Run Text="应用发生了无法解决的错误，请将此错误反馈至开发人员！"/>
         </TextBlock>
-        <TextBox x:Name="TextBoxCrashInfo" Grid.Row="1" Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="0 6" AcceptsReturn="True"
+        <TextBox x:Name="TextBoxCrashInfo" Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="0,107,0,274" AcceptsReturn="True"
                  VerticalContentAlignment="Top"
                  VerticalScrollBarVisibility="Auto" IsReadOnly="True" Text="{Binding CrashInfo, Mode=OneWay}" HorizontalScrollBarVisibility="Auto"
-                 d:Text="123"/>
-        <StackPanel Grid.Row="2" HorizontalAlignment="Right" Orientation="Horizontal">
+                 d:Text="123" Grid.ColumnSpan="2"/>
+        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Grid.Column="1" Margin="0,379,0,236">
             <Button Style="{StaticResource MaterialDesignPaperButton}" Margin="0 0 6 0" Click="ButtonIgnore_OnClick">
-                <ely:IconText Kind="Close" Text="忽略" IconMargin="3 0 0 0"/>
+                <ely:IconText Kind="Close" Text="忽略提示" IconMargin="3 0 0 0"/>
             </Button>
             <Button Style="{StaticResource MaterialDesignPaperButton}" Margin="0 0 6 0" Click="ButtonExit_OnClick">
                 <ely:IconText Kind="ExitToApp" Text="退出应用" IconMargin="3 0 0 0"/>
@@ -44,7 +48,7 @@
                 <ely:IconText Kind="Restart" Text="重启应用" IconMargin="3 0 0 0"/>
             </Button>
         </StackPanel>
-        <StackPanel Grid.Row="2" HorizontalAlignment="Left" Orientation="Horizontal">
+        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Grid.ColumnSpan="2" Margin="0,379,0,236">
             <Button Style="{StaticResource MaterialDesignPaperButton}" Click="ButtonCopy_OnClick">
                 <ely:IconText Kind="ContentCopy" Text="拷贝错误" IconMargin="3 0 0 0"/>
             </Button>
