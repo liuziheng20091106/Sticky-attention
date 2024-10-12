@@ -108,7 +108,6 @@ Sticky-attention 是一款适用于Windows 系统教室一体机的作业显示�
 
 - **贡献者**
 <!-- readme: contributors -start -->
-
 <!-- readme: contributors -end -->
 
 ## 许可证
