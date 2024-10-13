@@ -360,6 +360,7 @@ public partial class SettingsWindow : MyWindow
                     {
                         versionStatusTextBlock.Text = "检测到最新版本";
                         versionStatusText.Text = $"最新版本: {updateInfo.Version}"; // 显示最新版本号
+                        versionStatusTexts.Text = "";
                         versionStatusText.FontSize = 18;
                         versionStatusText.FontWeight = FontWeights.Bold;
 
