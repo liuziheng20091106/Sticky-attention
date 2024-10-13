@@ -53,6 +53,34 @@ namespace StickyHomeworks
             ViewModel.PropertyChanging += ViewModelOnPropertyChanging;
             // 设置窗口的数据上下文为当前窗口实例
             DataContext = this;
+            // 注册窗口关闭事件（可能无效）
+            Closing +=  OnApplicationExit;
+            focusObserverService.FocusChanged += FocusObserverServiceOnFocusChanged;
+            ViewModel.PropertyChanged += ViewModelOnPropertyChanged;
+            ViewModel.PropertyChanging += ViewModelOnPropertyChanging;
+            DataContext = this;
+            Application.Current.Exit += OnApplicationExits;
+        }
+
+        //1.事件处理器来保存窗口位置 防止用户手动从任务管理器关闭软件而导致的无法保存位置（可能无效）
+        private void OnApplicationExit(object sender, CancelEventArgs e)
+        {
+            // 保存窗口位置
+            SavePos();
+            // 保存设置
+            SettingsService.SaveSettings();
+            // 保存用户配置文件
+            ProfileService.SaveProfile();
+        }
+        //2.事件处理器来保存窗口位置 防止用户手动从任务管理器关闭软件而导致的无法保存位置（可能无效）
+        private void OnApplicationExits(object sender, ExitEventArgs e)
+        {
+            // 保存窗口位置
+            SavePos();
+            // 保存设置
+            SettingsService.SaveSettings();
+            // 保存用户配置文件
+            ProfileService.SaveProfile();
         }
 
 
@@ -332,6 +360,11 @@ namespace StickyHomeworks
                 SetBottom();
                 DragMove();
                 SetBottom();
+                SavePos();//调取当前位置
+                // 保存设置
+                SettingsService.SaveSettings();
+                // 保存用户配置文件
+                ProfileService.SaveProfile();
             }
         }
 
@@ -350,12 +383,22 @@ namespace StickyHomeworks
         {
             // 当窗口状态改变时，如果窗口被最大化或调整大小，调用 SetBottom 方法
             SetBottom();
+            SavePos();
+            // 保存设置
+            SettingsService.SaveSettings();
+            // 保存用户配置文件
+            ProfileService.SaveProfile();
         }
 
         private void MainWindow_OnActivated(object? sender, EventArgs e)
         {
             // 当窗口被激活时，调用 SetBottom 方法
             SetBottom();
+            SavePos();
+            // 保存设置
+            SettingsService.SaveSettings();
+            // 保存用户配置文件
+            ProfileService.SaveProfile();
         }
 
         private void ButtonExit_OnClick(object sender, RoutedEventArgs e)
