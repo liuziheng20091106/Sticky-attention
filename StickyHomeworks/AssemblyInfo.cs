@@ -11,8 +11,8 @@ using System.Windows;
                                                 // app, or any theme specific resource dictionaries)
 )]
 
-[assembly: AssemblyVersion("1.1.7.2")]
-[assembly: AssemblyFileVersion("1.1.7.2")]
+[assembly: AssemblyVersion("1.1.7.3")]
+[assembly: AssemblyFileVersion("1.1.7.3")]
 [assembly: AssemblyTitle("Sticky-attention")]
 [assembly: AssemblyProduct("Sticky-attention")]
 [assembly: SupportedOSPlatform("Windows")]
