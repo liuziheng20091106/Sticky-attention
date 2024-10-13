@@ -76,7 +76,7 @@
                                     SelectedDate="{Binding MainWindow.ViewModel.SelectedHomework.DueTime}"/>
                         </Grid>
                         <Separator Margin="-6 6"/>
-                        <ely:IconText Kind="TagMultipleOutline" Text="标签"/>
+                        <ely:IconText Kind="Oar" Text="快捷文字"/>
                         <ListBox Grid.Row="1"
                              ItemsSource="{Binding SettingsService.Settings.Tags}"
                              Style="{StaticResource MaterialDesignFilterChipPrimaryOutlineListBox}">
@@ -107,10 +107,6 @@
                              Margin="4 0"
                               Style="{StaticResource MaterialDesignToolForegroundButton}"
                              Command="{Binding AddImageCommand}" />
-                                <Button Content="{materialDesign:PackIcon LinkAdd}"
-                                    VerticalAlignment="Center"
-                                    Margin="4 0"
-                                    Style="{StaticResource MaterialDesignToolForegroundButton}" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
                                 <Button Content="{materialDesign:PackIcon Undo}"

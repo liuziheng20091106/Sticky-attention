@@ -12,7 +12,6 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/ElysiaFramework;component/Resources.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/ElysiaFramework;component/Assets/Fonts/Fonts.xaml"/>
-
             </ResourceDictionary.MergedDictionaries>
 
             <Style TargetType="ScrollViewer" BasedOn="{StaticResource MaterialDesignScrollViewer}">

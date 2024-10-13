@@ -21,7 +21,7 @@ namespace StickyHomeworks.Controls
 
             if ((bool)e.NewValue)
             {
-                storyboard.Begin(this, true); // 第二个参数 true 使动画以填充模式播放。
+                storyboard.Begin(this, false); // 第二个参数 true 使动画以填充模式播放。
             }
             else
             {

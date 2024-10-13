@@ -234,10 +234,11 @@
                                         <MenuItem Margin="-12 0" Icon="{materialDesign:PackIcon Refresh}" Header="一键清除作业" Click="MenuItemBacktowork_OnClick" IsEnabled="{Binding ViewModel.MenuItemBacktowork}"/>
                                         <MenuItem Margin="-12 0" Icon="{materialDesign:PackIcon CogOutline}" Header="设置" Click="ButtonSettings_OnClick"/>
                                         <MenuItem Margin="-12 0" Icon="{materialDesign:PackIcon cancel}" Header="关闭并保存应用" Click="ButtonExit_OnClick"   />
+                                        <!--<MenuItem Margin="-12 0" Icon="{materialDesign:PackIcon Restart}" Header="重启" Click="ButtonRestart_OnClick"   />-->
                                     </StackPanel>
                                 </Grid>
                             </materialDesign:PopupEx>
-                            <Button Content="{materialDesign:PackIcon Add, Size=18}" ToolTip="布置作业"
+                            <Button Content="{materialDesign:PackIcon Add, Size=18}" ToolTip="布置"
                               Visibility="{Binding ViewModel.IsExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"
                               Click="ButtonCreateHomework_OnClick" />
                             <ToggleButton Style="{StaticResource MaterialDesignSwitchToggleButton}"
@@ -251,7 +252,7 @@
                             <Button Content="{materialDesign:PackIcon FileExport, Size=18}" ToolTip="导出…" 
                                     Visibility="{Binding ViewModel.IsExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"
                                     Click="ButtonExport_OnClick"/>
-                            <!---> <Button Margin="4 0" Click="ButtonExpandingSwitcher_OnClick">
+                            <Button Margin="4 0" Click="ButtonExpandingSwitcher_OnClick">
                                 <Button.Style>
                                     <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignToolForegroundButton}">
                                         <Style.Triggers>
@@ -266,10 +267,7 @@
                                         </Style.Triggers>
                                     </Style>
                                 </Button.Style>
-                            </Button> -->
-                            <Button Content="{materialDesign:PackIcon Kind=Restart, Size=18}" ToolTip="重启" 
-                                    Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
-                                    CommandParameter="{StaticResource ExitConfirm}"/>
+                            </Button>
                         </StackPanel>
                     </Grid>
                 </materialDesign:ColorZone>
@@ -372,7 +370,7 @@
                         Click="ButtonCreateHomework_OnClick"
                         Visibility="{Binding ViewModel.IsExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"
                         Style="{StaticResource MaterialDesignFlatButton}">
-                    <ely:IconText Kind="Add" Text="添加" />
+                    <ely:IconText Kind="Add" Text="布置" />
                 </Button>
 
                 <!-- 保存中 -->
@@ -399,11 +397,11 @@
                     <!--<Image Source="/Assets/光辉矢愿_瞄准.png" Height="81" Width="81"
                            HorizontalAlignment="Center"
                            Margin="0 0 0 8"/>-->
-                    <materialDesign:PackIcon Kind="MoveResizeVariant" 
+                    <!--<materialDesign:PackIcon Kind="MoveResizeVariant" 
                                              Height="80" Width="80"
                                              HorizontalAlignment="Center"
-                                             Margin="8"/>
-                    <!--<controls:WindowMovingDemo Margin="0 0 0 8" ToolTip="窗口操作演示"/>-->
+                                             Margin="8"/>-->
+                    <controls:WindowMovingDemo Margin="0 0 0 8" ToolTip="窗口操作演示"/>
                     <TextBlock Text="窗口已经解锁，拖动以移动窗口，拉伸边缘以调整窗口大小。"
                                TextWrapping="Wrap" 
                                HorizontalAlignment="Center"

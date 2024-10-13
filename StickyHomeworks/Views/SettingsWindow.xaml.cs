@@ -15,6 +15,7 @@ using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using System.Xml.Linq;
 using StickyHomeworks;
+using Microsoft.AppCenter.Crashes;
 
 namespace StickyHomeworks.Views;
 /// <summary>
@@ -554,5 +555,10 @@ public partial class SettingsWindow : MyWindow
             }
         }
 
+    private void MenuItem_Click(object sender, RoutedEventArgs e)
+    {
+        SentrySdk.CaptureMessage("Hello Sentry");
+        Crashes.GenerateTestCrash();
+    }
 }
 

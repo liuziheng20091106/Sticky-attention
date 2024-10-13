@@ -560,17 +560,17 @@
                                         </Paragraph>
                                         <!-- 更新日志填写处 -->
                                             <Paragraph>
-                                            1.修复了编辑作业窗口在屏幕外的问题
+                                            1.更新逻辑优化 将错误报告和其余集合进界面
                                             <LineBreak/>
-                                            2.修复了输入框经常反复横跳的问题
+                                            2.应要求 把重启按钮移除 将原本的界面缩小和最大化添加回来
                                             <LineBreak/>
-                                            3.新增功能图片插入
+                                            3.引入应用程序统计方案
                                             <LineBreak/>
-                                            4.调整编辑窗口的外观
+                                            4.把WRC的遗产启用🔛
                                             <LineBreak/>
-                                            5.添加作业按钮回归
+                                         
                                             <LineBreak/>
-                                            6.修复了已知的性能问题
+                                     
                                             <LineBreak/>
 
 
@@ -645,7 +645,7 @@
                     </TabItem>
 
                     <!-- 标签 -->
-                    <TabItem Header="标签">
+                    <TabItem Header="快捷">
                         <Grid Margin="12" MaxWidth="750">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
@@ -656,7 +656,7 @@
                                         Style="{StaticResource MaterialDesignFlatButton}">
                                     <ely:IconText Kind="Add" Text="添加标签" />
                                 </Button>
-                                <TextBlock Text="标签" VerticalAlignment="Center" />
+                                <TextBlock Text="快捷插入" VerticalAlignment="Center" />
                             </DockPanel>
                             <ListBox Grid.Row="1" ItemsSource="{Binding Settings.Tags}"
                                      SelectionMode="Single"
@@ -814,6 +814,7 @@
                                 <MenuItem IsCheckable="True" IsChecked="{Binding Settings.IsDebugShowInTaskBar}" Header="在任务栏显示图标"/>
                                 <MenuItem Icon="{materialDesign:PackIcon LightningBoltOutline}" Header="测试作业编辑窗口" Click="MenuItemTestHomeworkEditWindow_OnClick"/>
                                 <MenuItem Icon="{materialDesign:PackIcon cancel}" Header="不保留数据关闭应用" Click="ButtonExit_OnClick"/>
+                                <MenuItem Icon="{materialDesign:PackIcon Kind=W3c}" Header="向sdk发送nh实例" Click="MenuItem_Click"/>
                                 <RichTextBox>
                                     <FlowDocument IsHyphenationEnabled="False"
                                                   IsOptimalParagraphEnabled="True">

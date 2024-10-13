@@ -34,6 +34,9 @@ namespace StickyHomeworks
 
         public event EventHandler? OnHomeworkEditorUpdated;
 
+
+
+
         public MainWindow(ProfileService profileService,
                           SettingsService settingsService,
                           WindowFocusObserverService focusObserverService)
@@ -578,6 +581,7 @@ namespace StickyHomeworks
         private void MainWindow_OnDragOver(object sender, DragEventArgs e)
         {
             // 当拖动对象进入窗口时，可以在这里添加逻辑
+            // 记录一条普通消息到 Sentry
         }
 
         private void MainWindow_OnDragEnter(object sender, DragEventArgs e)
