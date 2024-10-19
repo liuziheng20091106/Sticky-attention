@@ -39,7 +39,7 @@ Sticky-attention 是一款适用于Windows 系统教室一体机的作业显示�
 
 > [!TIP]
 >
-> 您可以点击链接查看 [Sticky-attention 介绍视频](https://bilibili.com/video/BV11exqeiEwf/) 了解本软件的使用。
+> 您可以点击链接查看 [Sticky-attention 介绍视频](https://bilibili.com/video/BV1YJ4Fe5EgD/) 了解本软件的使用。
 > 
 - [X] 布置与修改作业
 - [X] 富文本支持（字体及其大小、颜色等）
@@ -81,7 +81,7 @@ Sticky-attention 是一款适用于Windows 系统教室一体机的作业显示�
 > [!Important]
 > **本软件不能直接安装在Program Files与Program Files (x86)文件夹下，否则启动软件必须用管理员权限打开，同时开机自启失效！（软件也会报错）捏**
 > ##### 点击下方链接 即可一步步教你安装Sa(Sticky-attention)
-> [![Sa安装视频](https://img.shields.io/badge/-bilibili%E8%A7%86%E9%A2%91%EF%BD%9CBV11exqeiEwf-%23FB7299?style=flat&logo=bilibili)](https://www.bilibili.com/video/BV11exqeiEwf)
+> [![Sa安装视频](https://img.shields.io/badge/-bilibili%E8%A7%86%E9%A2%91%EF%BD%9CBV1YJ4Fe5EgD-%23FB7299?style=flat&logo=bilibili)](https://www.bilibili.com/video/BV1YJ4Fe5EgD)
 
 
 ## 遇到问题
