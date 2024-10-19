@@ -8,7 +8,7 @@
 [![GitHub Issues](https://img.shields.io/github/issues-search/Sticky-attention/Sticky-attention?query=is%3Aopen&style=flat&logo=github&label=Issues&color=%233fb950)](https://github.com/Sticky-attention/Sticky-attention/issues)
 [![Release](https://img.shields.io/github/v/release/Sticky-attention/Sticky-attention?style=flat&color=%233fb950&label=稳定版)](https://github.com/Sticky-attention/Sticky-attention/releases/latest) 
 [![Beta](https://img.shields.io/github/v/release/Sticky-attention/Sticky-attention?include_prereleases&style=flat&label=测试版)](https://github.com/Sticky-attention/Sticky-attention/releases/)
-![Update Status](https://img.shields.io/badge/%E6%9B%B4%E6%96%B0%E7%8A%B6%E6%80%81-%E6%B4%BB%E8%B7%83-PaleGreen)
+![Update Status](https://img.shields.io/badge/活跃啥活跃-PaleGreen)
 
 
 Sticky-attention 是一款适用于Windows 系统教室一体机的作业显示工具，可以展示各科作业等信息，拥有着原版没有的功能。
