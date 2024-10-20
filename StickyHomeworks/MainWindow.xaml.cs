@@ -34,6 +34,9 @@ namespace StickyHomeworks
 
         public event EventHandler? OnHomeworkEditorUpdated;
 
+
+
+
         public MainWindow(ProfileService profileService,
                           SettingsService settingsService,
                           WindowFocusObserverService focusObserverService)
@@ -50,6 +53,34 @@ namespace StickyHomeworks
             ViewModel.PropertyChanging += ViewModelOnPropertyChanging;
             // 设置窗口的数据上下文为当前窗口实例
             DataContext = this;
+            // 注册窗口关闭事件（可能无效）
+            Closing +=  OnApplicationExit;
+            focusObserverService.FocusChanged += FocusObserverServiceOnFocusChanged;
+            ViewModel.PropertyChanged += ViewModelOnPropertyChanged;
+            ViewModel.PropertyChanging += ViewModelOnPropertyChanging;
+            DataContext = this;
+            Application.Current.Exit += OnApplicationExits;
+        }
+
+        //1.事件处理器来保存窗口位置 防止用户手动从任务管理器关闭软件而导致的无法保存位置（可能无效）
+        private void OnApplicationExit(object sender, CancelEventArgs e)
+        {
+            // 保存窗口位置
+            SavePos();
+            // 保存设置
+            SettingsService.SaveSettings();
+            // 保存用户配置文件
+            ProfileService.SaveProfile();
+        }
+        //2.事件处理器来保存窗口位置 防止用户手动从任务管理器关闭软件而导致的无法保存位置（可能无效）
+        private void OnApplicationExits(object sender, ExitEventArgs e)
+        {
+            // 保存窗口位置
+            SavePos();
+            // 保存设置
+            SettingsService.SaveSettings();
+            // 保存用户配置文件
+            ProfileService.SaveProfile();
         }
 
 
@@ -188,6 +219,7 @@ namespace StickyHomeworks
         {
             // 编辑完成时退出编辑模式
             ExitEditingMode();
+            AutoExport(null, null);
         }
 
         private void ButtonCreateHomework_OnClick(object sender, RoutedEventArgs e)
@@ -277,7 +309,7 @@ namespace StickyHomeworks
                 e.Cancel = true;
                 return;
             }
-
+            AutoExport(null, null);
             // 保存窗口位置
             SavePos();
             // 保存设置
@@ -313,12 +345,14 @@ namespace StickyHomeworks
                 return;
             ProfileService.Profile.Homeworks.Remove(ViewModel.SelectedHomework);
             ViewModel.IsUpdatingHomeworkSubject = false;
+            AutoExport(null, null);
         }
 
         private void ButtonEditDone_OnClick(object sender, RoutedEventArgs e)
         {
             // 点击编辑完成按钮，关闭抽屉
             ViewModel.IsDrawerOpened = false;
+            AutoExport(null, null);
         }
 
         private void DragBorder_OnMouseDown(object sender, MouseButtonEventArgs e)
@@ -329,6 +363,11 @@ namespace StickyHomeworks
                 SetBottom();
                 DragMove();
                 SetBottom();
+                SavePos();//调取当前位置
+                // 保存设置
+                SettingsService.SaveSettings();
+                // 保存用户配置文件
+                ProfileService.SaveProfile();
             }
         }
 
@@ -347,19 +386,30 @@ namespace StickyHomeworks
         {
             // 当窗口状态改变时，如果窗口被最大化或调整大小，调用 SetBottom 方法
             SetBottom();
+            SavePos();
+            // 保存设置
+            SettingsService.SaveSettings();
+            // 保存用户配置文件
+            ProfileService.SaveProfile();
         }
 
         private void MainWindow_OnActivated(object? sender, EventArgs e)
         {
             // 当窗口被激活时，调用 SetBottom 方法
             SetBottom();
+            SavePos();
+            // 保存设置
+            SettingsService.SaveSettings();
+            // 保存用户配置文件
+            ProfileService.SaveProfile();
         }
 
         private void ButtonExit_OnClick(object sender, RoutedEventArgs e)
         {
             // 显示一个消息框询问用户是否要关闭程序
+            AutoExport(null, null);
             var result = System.Windows.MessageBox.Show("您确定要关闭程序吗？", "Sticky-attention", MessageBoxButton.YesNo, MessageBoxImage.Question);
-
+            
             if (result == MessageBoxResult.Yes)
             {
                 // 如果用户选择“是”，则执行关闭逻辑
@@ -496,7 +546,81 @@ namespace StickyHomeworks
             // 设置视图模型的 IsWorking 属性为 false，表示导出操作已完成
             ViewModel.IsWorking = false;
         }
+        private async void AutoExport(object sender, RoutedEventArgs e)
+        {
+            //Button Content="{materialDesign:PackIcon FileExportOutline, Size=18}" ToolTip="一键导出到D盘" 
+            //Visibility = "{Binding ViewModel.IsExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                    //Click = "AutoExport" />
+            // 设置视图模型的 IsWorking 属性为 true，表示当前正在处理导出操作
+            ViewModel.IsWorking = true;
 
+            
+
+            // 调用 ExitEditingMode 方法退出编辑模式
+            ExitEditingMode();
+
+            // 等待一个任务调度周期，确保 UI 操作完成后再进行后续操作
+            await Task.Yield();
+
+            // 设置备份目录
+            var file = "D:\\homeworksexport.png";
+
+            // 创建一个新的绘图视觉对象
+            var visual = new DrawingVisual();
+            // 从设置服务中获取当前的缩放比例
+            var s = SettingsService.Settings.Scale;
+
+            // 打开视觉对象的渲染上下文
+            using (var context = visual.RenderOpen())
+            {
+                // 创建一个新的视觉画刷，用于将 MainListView 的视觉内容绘制到绘图面上
+                var brush = new VisualBrush(MainListView)
+                {
+                    Stretch = Stretch.None  // 设置画刷的拉伸模式为 None，即不拉伸
+                };
+
+                // 从应用的资源中找到名为 MaterialDesignPaper 的画刷
+                var bg = (System.Windows.Media.Brush)FindResource("MaterialDesignPaper");
+
+                // 在渲染上下文中绘制背景
+                context.DrawRectangle(bg, null, new Rect(0, 0, MainListView.ActualWidth * s, MainListView.ActualHeight * s));
+
+                // 在渲染上下文中绘制 MainListView 的内容
+                context.DrawRectangle(brush, null, new Rect(0, 0, MainListView.ActualWidth * s, MainListView.ActualHeight * s));
+            }
+
+            // 创建一个目标为位图的渲染对象，用于将视觉对象转换为位图
+            var bitmap = new RenderTargetBitmap((int)(MainListView.ActualWidth * s), (int)(ActualHeight * s), 96d, 96d, PixelFormats.Default);
+            bitmap.Render(visual);
+
+            // 创建一个 PNG 位图编码器，用于将位图编码为 PNG 格式
+            var encoder = new PngBitmapEncoder();
+            encoder.Frames.Add(BitmapFrame.Create(bitmap));
+
+            // 尝试将编码后的 PNG 数据保存到文件中
+            try
+            {
+                // 使用 FileStream 创建文件流，用于写入文件
+                using (var stream = new FileStream(file, FileMode.Create, FileAccess.Write))
+                {
+                    // 将编码器中的数据写入文件流
+                    encoder.Save(stream);
+
+                    // 调用 ShowExportSuccessMessage 方法显示导出成功的提示信息
+                    await ShowExportSuccessMessage(file);
+                }
+            }
+            catch (Exception ex)
+            {
+                // 如果在导出过程中发生异常，将异常信息添加到 SnackbarMessageQueue 中显示
+                ViewModel.SnackbarMessageQueue.Enqueue($"导出失败：{ex.Message}");
+            }
+
+        
+
+            // 设置视图模型的 IsWorking 属性为 false，表示导出操作已完成
+            ViewModel.IsWorking = false;
+        }
         protected override void OnStateChanged(EventArgs e)
         {
             base.OnStateChanged(e);
@@ -527,6 +651,7 @@ namespace StickyHomeworks
             // 当抽屉关闭时，保存设置和用户配置文件
             SettingsService.SaveSettings();
             ProfileService.SaveProfile();
+            AutoExport(null, null);
         }
 
         private void ButtonMore_Click(object sender, RoutedEventArgs e)
@@ -571,6 +696,7 @@ namespace StickyHomeworks
         private void ButtonRestart_OnClick(object sender, RoutedEventArgs e)
         {
             // 点击重启按钮，重启应用程序
+            AutoExport(null, null);
             App.ReleaseLock();
             System.Windows.Forms.Application.Restart();
             System.Windows.Application.Current.Shutdown();
@@ -578,6 +704,7 @@ namespace StickyHomeworks
         private void MainWindow_OnDragOver(object sender, DragEventArgs e)
         {
             // 当拖动对象进入窗口时，可以在这里添加逻辑
+            // 记录一条普通消息到 Sentry
         }
 
         private void MainWindow_OnDragEnter(object sender, DragEventArgs e)
