@@ -293,8 +293,13 @@
                                                              materialDesign:TextFieldAssist.SuffixText="px"/>
                                     </ely:SettingsCard.Switcher>
                                 </ely:SettingsCard>
+                                <ely:SettingsCard IconGlyph="folderremove" Header="自动清除作业"
+                                    Description="启动时有作业过期时，清除过期的作业。"
+                                     IsOn="{Binding Settings.clean, Mode=TwoWay}" />
+                                
                                 <ely:IconText Kind="LedOn" Text="其他" Margin="0 0 0 8"/>
-                                <ely:SettingsCard IconGlyph="LayersOutline" Header="窗口置底"
+                                
+                                    <ely:SettingsCard IconGlyph="LayersOutline" Header="窗口置底"
                                  Description="将窗口置于底端。"
                                   IsOn="{Binding Settings.IsBottom, Mode=TwoWay}" />
 

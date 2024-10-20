@@ -49,6 +49,12 @@ public partial class SettingsWindow : MyWindow
         set;
     } = false;
 
+    public bool Clean
+    {
+        get;
+        set;
+    } = false;
+
     public WallpaperPickingService WallpaperPickingService { get; }
 
     public SettingsWindow(WallpaperPickingService wallpaperPickingService,

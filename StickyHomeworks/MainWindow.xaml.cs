@@ -34,7 +34,10 @@ namespace StickyHomeworks
 
         public event EventHandler? OnHomeworkEditorUpdated;
 
+        string folderName = "备份";
 
+        // 获取当前应用程序的执行目录
+        string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
 
 
         public MainWindow(ProfileService profileService,
@@ -162,7 +165,7 @@ namespace StickyHomeworks
             }
         }
 
-        protected  void OnInitialized(EventArgs e)
+        protected void OnInitialized(EventArgs e)
         {
             // 初始化时清理过期作业
             ViewModel.ExpiredHomeworks = ProfileService.CleanupOutdated();
@@ -546,15 +549,26 @@ namespace StickyHomeworks
             // 设置视图模型的 IsWorking 属性为 false，表示导出操作已完成
             ViewModel.IsWorking = false;
         }
+
+        //一件导出到？盘
+        private static int fileIndex = 0;
         private async void AutoExport(object sender, RoutedEventArgs e)
         {
-            //Button Content="{materialDesign:PackIcon FileExportOutline, Size=18}" ToolTip="一键导出到D盘" 
-            //Visibility = "{Binding ViewModel.IsExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                    //Click = "AutoExport" />
+            // 文件夹名称
+            string folderName = "备份";
+
+            // 获取当前应用程序的执行目录
+            string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+
             // 设置视图模型的 IsWorking 属性为 true，表示当前正在处理导出操作
             ViewModel.IsWorking = true;
 
-            
+            // 组合目录，并确保备份文件夹存在
+            string folderPath = Path.Combine(currentDirectory, folderName);
+            if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
 
             // 调用 ExitEditingMode 方法退出编辑模式
             ExitEditingMode();
@@ -562,8 +576,35 @@ namespace StickyHomeworks
             // 等待一个任务调度周期，确保 UI 操作完成后再进行后续操作
             await Task.Yield();
 
-            // 设置备份目录
-            var file = "D:\\homeworksexport.png";
+            // 文件基本名称
+            string baseFileName = "备份文件";
+            // 文件扩展名
+            string fileExtension = ".png";
+            // 保留的最新文件数量
+            const int maxFiles = 20;
+
+            // 获取备份文件夹内所有以“备份文件”开头的文件
+            var backupFiles = Directory.GetFiles(folderPath)
+                                         .Where(f => Path.GetFileName(f).StartsWith(baseFileName))
+                                         .Select(f => new FileInfo(f))
+                                         .ToList();
+
+            // 如果备份文件数量达到上限，则删除最旧的文件
+            if (backupFiles.Count >= maxFiles)
+            {
+                // 获取最旧的文件路径
+                string oldestFilePath = backupFiles.OrderBy(fi => fi.CreationTime).First().FullName;
+                // 删除最旧的文件
+                File.Delete(oldestFilePath);
+            }
+
+            // 确保fileIndex在1到maxFiles之间
+            fileIndex = (fileIndex + 1) % (maxFiles + 1);
+            if (fileIndex == 0) fileIndex = 1;
+
+            // 生成新的文件名
+            string newFileName = $"{baseFileName}{fileIndex}{fileExtension}";
+            string filePath = Path.Combine(folderPath, newFileName);
 
             // 创建一个新的绘图视觉对象
             var visual = new DrawingVisual();
@@ -601,13 +642,13 @@ namespace StickyHomeworks
             try
             {
                 // 使用 FileStream 创建文件流，用于写入文件
-                using (var stream = new FileStream(file, FileMode.Create, FileAccess.Write))
+                using (var stream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
                 {
                     // 将编码器中的数据写入文件流
                     encoder.Save(stream);
 
                     // 调用 ShowExportSuccessMessage 方法显示导出成功的提示信息
-                    await ShowExportSuccessMessage(file);
+                    //await ShowExportSuccessMessage(file);
                 }
             }
             catch (Exception ex)

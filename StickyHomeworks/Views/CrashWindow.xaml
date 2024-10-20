@@ -17,7 +17,7 @@
                    mc:Ignorable="d"
                    Icon="/Assets/AppLogo.png"
                    Closing="CrashWindow_OnClosed"
-                   Title="应用问题" Height="450" Width="800">
+                   Title="应用问题" Height="480" Width="800">
     <Grid Margin="12">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="11*"/>
