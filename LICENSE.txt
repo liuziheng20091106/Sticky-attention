@@ -1,101 +1,101 @@
-GNU通用公共许可证
-第3版，2007年6月29日
+GNU General Public License
+3rd Edition, June 29th, 2007
 
-版权所有(C)2007 <https://fsf.org/自由软件基金会>
-每个人都被允许复制和分发逐字副本
-但不允许对其进行更改。
+Copyright (c) 2007 < https://fsf.org/ Free Software Foundation >
+Everyone is allowed to copy and distribute verbatim copies.
+But it is not allowed to be changed.
 
-序文
+preface
 
-GNU通用公共许可证是一个免费的、版权所有的许可证
-软件和其他种类的作品。
+GNU General Public License is a free and copyrighted license.
+Software and other kinds of works.
 
-大多数软件和其他实用作品的许可证都是经过设计的
-剥夺你分享和修改作品的自由。相比之下，
-GNU通用公共许可证旨在保证您的自由
-共享和改变一个程序的所有版本——以确保它仍然是免费的
-面向所有用户的软件。我们，自由软件基金会，使用
-我们大部分软件的GNU通用公共许可证；它也适用于
-作者以这种方式发布的任何其他作品。你可以把它应用到
-你的程序也是。
+Most licenses for software and other practical works are designed.
+Deprive you of the freedom to share and modify your works. By contrast,
+The GNU General Public License is designed to guarantee your freedom.
+Share and change all versions of a program-to make sure it is still free.
+Software for all users. We, the Free Software Foundation, use
+GNU general public license for most of our software; It also applies to
+Any other work published by the author in this way. You can apply it to
+So is your program.
 
-当我们谈论自由软件时，我们指的是自由，而不是
-价格。我们的通用公共许可证旨在确保您
-有分发自由软件副本的自由(并收取费用
-他们，如果你愿意)，你收到源代码或可以得到它，如果你
-想要它，你可以改变软件或使用它的一部分在新的
-免费程序，你知道你可以做这些事情。
+When we talk about free software, we mean freedom, not freedom.
+Price. Our general public license is designed to ensure that you
+Free to distribute copies of free software (and charge a fee)
+They, if you like), you receive the source code or you can get it if you
+To want it, you can change the software or use part of it in the new one.
+Free program, you know you can do these things.
 
-为了保护你的权利，我们需要防止别人否定你
-这些权利或者要求你放弃这些权利。因此，你有
-如果您分发软件的副本，或者如果
-你修改一下:尊重他人自由的责任。
+In order to protect your rights, we need to prevent others from denying you.
+These rights either require you to give up these rights. So, you have
+If you distribute copies of the software, or if
+You modify it: the responsibility to respect the freedom of others.
 
-例如，如果您分发此类程序的副本，无论
-不管是免费的还是收费的，你都必须把同样的东西传递给接受者
-你所获得的自由。你必须确保他们也能收到
-或者可以得到源代码。你必须给他们看这些术语，这样他们才能
-知道他们的权利。
+For example, if you distribute copies of such programs, regardless of whether
+Whether it is free or charged, you must pass on the same thing to the recipient.
+The freedom you gained. You must make sure that they receive it, too
+Or you can get the source code. You must show them these terms so that they can
+Know their rights.
 
-使用GNU GPL的开发者通过两个步骤来保护你的权利:
-(1)声明软件的版权,( 2)向您提供本许可证
-给予您复制、分发和/或修改它的法律许可。
+Developers who use GNU GPL protect your rights in two steps:
+(1) declare the copyright of the software, and (2) provide you with this license.
+You are given legal permission to copy, distribute and/or modify it.
 
-为了开发者和作者的保护，GPL清楚地解释了
-这个自由软件没有担保。对于用户的和
-出于作者的考虑，GPL要求修改后的版本标记为
-改变，所以他们的问题不会被错误地归因于
-以前版本的作者。
+For the protection of developers and authors, GPL clearly explains
+This free software is not guaranteed. For the sum of users
+For the author's consideration, GPL requires that the revised version be marked as
+Change, so their problems will not be wrongly attributed to
+The author of the previous edition.
 
-一些设备被设计为拒绝用户安装或运行
-他们内部软件的修改版本，尽管制造商
-可以这样做。这从根本上不符合的目的
-保护用户更改软件的自由。系统的
-这种滥用的模式发生在个人产品领域
-使用，这恰恰是最不可接受的地方。因此，我们
-我设计了这个版本的GPL来禁止那些
-产品。如果这样的问题在其他领域大量出现，我们
-随时准备在未来版本中将此条款扩展到这些域
-根据保护用户自由的需要。
+Some devices are designed to deny users installation or operation.
+A modified version of their internal software, although the manufacturer
+You can do this. This is fundamentally inconsistent with the purpose.
+Protect users' freedom to change software. systematic
+This pattern of abuse occurs in the field of personal products.
+Use, this is precisely the most unacceptable place. Therefore, we
+I designed this version of GPL to ban those
+Products. If such problems occur in a large number in other fields, we
+Be ready to extend this clause to these domains in future versions.
+According to the need to protect users' freedom.
 
-最后，每个程序都不断受到软件专利的威胁。
-各国不应允许专利限制开发和使用
-通用计算机上的软件，但是在那些通用计算机上，我们希望
-避免专利应用于自由程序的特殊危险
-使其成为有效的专利。为了防止这种情况，GPL保证
-专利不能用来使程序变得非自由。
+Finally, every program is constantly threatened by software patents.
+Countries should not allow patents to restrict development and use.
+Software on general-purpose computers, but on those general-purpose computers, we hope
+Avoid the special danger of patent being applied to free programs.
+Make it an effective patent. To prevent this, GPL guarantees that
+Patents cannot be used to make programs non-free.
 
-复制、分发和传播的确切条款和条件
-修改如下。
+The exact terms and conditions of reproduction, distribution and dissemination.
+Modify as follows.
 
-条件
+condition
 
-0.定义。
+0. definition.
 
-“本许可证”是指GNU通用公共许可证的第3版。
+"This License" means the 3rd Edition of the GNU General Public License.
 
-“版权”也指类似版权的法律，适用于其他类型的
-作品，如半导体掩膜。
+"Copyright" also refers to laws similar to copyright, which apply to other types of copyright.
+Works, such as semiconductor masks.
 
-“程序”是指根据本协议许可的任何版权作品
-执照。每个被许可人都被称为“您”。“被许可方”和
-“接受者”可以是个人或组织。
+"Program" means any copyrighted work licensed under this Agreement.
+License. Each licensee is called "you". "Licensee" and
+Recipients can be individuals or organizations.
 
-“修改”作品意味着复制或改编作品的全部或部分
-以需要版权许可的方式，而不是制作
-一模一样。由此产生的作品被称为
-早期作品或基于早期作品的作品。
+"Modifying" a work means copying or adapting all or part of the work.
+In a way that requires copyright permission, not production.
+Exactly the same. The resulting work is called
+Early works or works based on early works.
 
-“涵盖作品”是指未经修改的程序或基于
-在节目中。
+"Covered Works" means unmodified programs or works based on
+On the show.
 
-“传播”一个作品意味着用它做任何事情，没有
-许可，会让你直接或间接负责
-适用版权法下的侵权，但在
-计算机或修改私人副本。传播包括复制，
-分发(修改或不修改)，提供给
-公开，在某些国家还包括其他活动。
+"Spreading" a work means doing anything with it, nothing.
+Permission will make you directly or indirectly responsible.
+Infringement under copyright law applies, but in
+Computer or modify private copy. Communication includes copying,
+Distribute (with or without modification), provide to
+Open, including other activities in some countries.
 
-“传达”一部作品意味着任何一种传播方式
-双方制作或接收副本。仅仅通过以下方式与用户互动
-一个计算机网络，如果没有拷贝的传送，就不是传送。
+"Conveying" a work means any means of communication.
+Both parties make or receive copies. Interact with users only in the following ways
+A computer network, if there is no copy transmission, is not transmission.
