@@ -252,6 +252,9 @@
                             <Button Content="{materialDesign:PackIcon FileExport, Size=18}" ToolTip="导出…" 
                                     Visibility="{Binding ViewModel.IsExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"
                                     Click="ButtonExport_OnClick"/>
+                            <Button Content="{materialDesign:PackIcon FileExportOutline, Size=18}" ToolTip="一键导出到D盘" 
+                                    Visibility="{Binding ViewModel.IsExpanded, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                    Click="AutoExport"/>
                             <Button Margin="4 0" Click="ButtonExpandingSwitcher_OnClick">
                                 <Button.Style>
                                     <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignToolForegroundButton}">
